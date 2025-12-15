@@ -57,6 +57,11 @@ group :development, :test do
 
   gem "rspec-rails"
   gem "factory_bot_rails"
+
+  gem 'devise'
+  gem 'omniauth'
+  gem 'omniauth-google-oauth2'
+  gem 'omniauth-twitter2'
 end
 
 group :development do

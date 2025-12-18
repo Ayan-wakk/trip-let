@@ -17,7 +17,10 @@
   <body class="bg-sky-50 text-gray-900 min-h-screen flex flex-col">
     <!-- Header -->
     <%= render 'shared/header1' %>
-    <%= render 'shared/header2' %>
+
+    <% if user_signed_in? %>
+      <%= render 'shared/header2' %>
+    <% end %>
 
     <!-- Main -->
     <main class="container mx-auto mt-10 px-4">

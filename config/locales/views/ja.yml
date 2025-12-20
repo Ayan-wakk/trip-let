@@ -1,5 +1,21 @@
 ja:
+  activerecord:
+    attributes:
+      user:
+        name: "名前"
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "パスワード（確認）"
+        remember_me: "ログイン状態を保持する"
   devise:
+    registrations:
+      new:
+        sign_up: 新規登録
+        signup: 登録
     sessions:
       new:
-        login: ログイン
+        sign_in: "ログイン"
+    passwords:
+      password_length:
+        one: "（%{count}文字以上）"
+        other: "（%{count}文字以上）"

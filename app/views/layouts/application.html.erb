@@ -4,12 +4,15 @@
     <title>Trip-let</title>
     <meta name="viewport" content="width=device-width,initial-scale=1"> 
 
-    <!--偽物のリクエストを防ぐための安全トークンを埋め込むもの-->
-    <!--危険なスクリプトの実行を防ぐためのルールをブラウザに伝えるもの-->
     <%= csrf_meta_tags %> 
     <%= csp_meta_tag %> 
 
-    <!-- Tailwind CSS とアプリのCSS、そしてアプリのJavaScriptを Rails が HTML に読み込ませるためのタグを生成している。-->
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
@@ -23,7 +26,8 @@
     <% end %>
 
     <!-- Main -->
-    <main class="container mx-auto mt-10 px-4">
+    <main class="container mx-auto mt-10 px-4 flex-grow">
+      <%= render 'shared/flash' %>
       <%= yield %>  
     </main>
 

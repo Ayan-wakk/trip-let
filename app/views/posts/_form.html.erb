@@ -1,0 +1,81 @@
+<%= form_with model: @post do |f| %>
+  <div class="max-w-2xl mx-auto px-4 font-mono text-lg font-medium text-gray-800 py-2">
+
+    <div class="field mb-6">
+      <div>
+        <%= f.label :images, "写真を追加（必須）", class: "block text-xl font-medium text-gray-700" %>
+        <%= f.file_field :images, multiple: true,
+            class: "w-full h-20 border-2 border-dashed rounded-xl text-center" %>
+      </div>
+    </div>
+
+    <div class="field mb-6">
+      <div>
+        <%= f.label :title, "タイトル（必須）", class: "block text-xl font-medium text-gray-700" %>
+        <%= f.text_field :title, autofocus: true,
+            class: "mt-2 w-full rounded-md border-2 border-gray-300 bg-white px-4 py-2 text-lg
+                    focus:border-sky-500 focus:ring-2 focus:ring-sky-500" %>
+      </div>
+    </div>
+
+    <div class="field mb-6">
+      <div>
+        <%= f.label :body, "本文（必須）", class: "block text-xl font-medium text-gray-700" %>
+        <%= f.text_area :body,
+            class: "mt-2 w-full rounded-md border-2 border-gray-300 bg-white px-4 py-2 text-lg
+                    focus:border-sky-500 focus:ring-2 focus:ring-sky-500" %>
+      </div>
+    </div>
+
+    <div class="field mb-3">
+      <div class="grid grid-cols-2 gap-3 mb-4">
+        <div>
+          <%= f.label :country, "国（必須）", class: "block text-xl font-medium text-gray-700" %>
+          <%= f.select :country, country_options, { prompt: "国を選択" },
+              class: "mt-2 w-full h-12 rounded-md border-2 border-gray-300 bg-white px-4 py-2 text-lg
+                      focus:border-sky-500 focus:ring-2 focus:ring-sky-500" %>
+        </div>
+        <div>
+        <%= f.label :region, "地域", class: "block text-xl font-medium text-gray-700" %>
+        <%= f.text_field :region, autofocus: true,
+            class: "mt-2 w-full h-12 rounded-md border-2 border-gray-300 bg-white px-4 py-2 text-lg
+                    focus:border-sky-500 focus:ring-2 focus:ring-sky-500" %>
+        </div>        
+      </div>
+    </div>
+
+    <div class="field mb-4">
+      <div>
+        <%= f.label :visited_at, "滞在日", class: "block text-xl font-medium text-gray-700" %>
+        <%= f.date_field :visited_at,
+            class: "mt-2 w-full rounded-md border-2 border-gray-300 bg-white px-4 py-3 text-lg
+                    focus:border-sky-500 focus:ring-2 focus:ring-sky-500" %>
+      </div>
+    </div>
+
+    <div class="field mb-4">
+      <%= f.label :warning, "注意点", class: "block text-xl font-medium text-gray-700" %>
+        <%= f.text_area :warning,
+            class: "mt-2 w-full rounded-md border-2 border-gray-300 bg-white px-4 py-2 text-lg
+                    focus:border-sky-500 focus:ring-2 focus:ring-sky-500" %>
+    </div>
+
+    <div class="field mb-4 flex items-center gap-3">
+      <%= f.check_box :is_public,
+        class: "h-5 w-5 rounded border-gray-300 text-sky-600
+                focus:ring-sky-500" %>
+      <%= f.label :is_public, "公開する",
+        class: "text-xl text-gray-700 select-none" %>
+    </div>
+
+    <div class="fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 p-4">
+      <div class="max-w-2xl mx-auto">
+        <%= f.submit "投稿",
+            class: "w-full rounded-xl bg-sky-600 py-4 text-xl font-semibold
+                    text-white shadow-lg
+                    hover:bg-sky-500
+                    active:scale-95 transition" %>
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -5,6 +5,6 @@ Rails.application.routes.draw do
   }
 
   root "pages#home"  
-  resources :posts, only: [:index]
+  resources :posts, only: %i[index new create show edit destroy update]
   get "up" => "rails/health#show", as: :rails_health_check
 end

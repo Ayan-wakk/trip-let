@@ -7,4 +7,6 @@ class User < ApplicationRecord
          :rememberable, # ログイン情報の記憶
          :validatable, # メール・パスワードのバリデーション
          :omniauthable, omniauth_providers: %i[google_oauth2 twitter2] # Google, Twitter での OAuth 認証
+
+  has_many :posts, dependent: :destroy
 end

@@ -1,13 +1,53 @@
 <header class="bg-white shadow-sm">
-  <div class="container mx-auto flex items-center justify-center py-3 px-4">
-    <!-- 右側：ナビゲーション -->
-    <nav class="flex items-center space-x-8">
-      <%= link_to "投稿一覧", posts_path, class: "px-4 py-2 rounded-full bg-green-500 text-white hover:bg-green-400" %>
-      <%= link_to "MY投稿", "#", class: "px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-400" %>
-      <%= button_to "ログアウト", destroy_user_session_path, method: :delete, data: { turbo: false },
-          class: "px-4 py-2 text-gray-600 bg-white border border-gray-300 rounded-lg transition-all 
-                  duration-300 ease-in-out hover:bg-red-50 hover:text-red-600 hover:border-red-200
-                  hover:shadow-md cursor-pointer" %>
+  <div class="max-w-2xl mx-auto px-4 py-3">
+
+    <nav
+      class="
+        flex flex-row                   <!-- ★ 常に横並び -->
+        items-center justify-center
+        gap-2 sm:gap-6                  <!-- ★ スマホは余白を狭く -->
+      "
+    >
+
+      <%= link_to "投稿一覧", posts_path,
+          class: "
+            px-3 sm:px-4                <!-- ★ スマホpadding縮小 -->
+            py-2
+            rounded-full
+            bg-green-500 text-white
+            hover:bg-green-400
+            text-sm sm:text-base        <!-- ★ スマホ文字サイズ調整 -->
+            whitespace-nowrap           <!-- ★ 折返し防止 -->
+          " %>
+
+      <%= link_to "投稿する", new_post_path,
+          class: "
+            px-3 sm:px-4                <!-- ★ スマホpadding縮小 -->
+            py-2
+            rounded-lg
+            bg-blue-500 text-white
+            hover:bg-blue-400
+            text-sm sm:text-base        <!-- ★ スマホ文字サイズ調整 -->
+            whitespace-nowrap           <!-- ★ 折返し防止 -->
+          " %>
+
+      <%= button_to "ログアウト", destroy_user_session_path,
+          method: :delete,
+          data: { turbo: false },
+          class: "
+            px-3 sm:px-4                <!-- ★ スマホpadding縮小 -->
+            py-2
+            text-gray-600
+            bg-white
+            border border-gray-300
+            rounded-lg
+            transition-all duration-300 ease-in-out
+            hover:bg-red-50 hover:text-red-600 hover:border-red-200
+            hover:shadow-md
+            text-sm sm:text-base        <!-- ★ スマホ文字サイズ調整 -->
+            whitespace-nowrap           <!-- ★ 押し返し防止 -->
+          " %>
+
     </nav>
   </div>
 </header>

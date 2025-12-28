@@ -42,6 +42,14 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_21_124033) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "images", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "file_path"
+    t.bigint "post_id", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_images_on_post_id"
+  end
+
   create_table "posts", force: :cascade do |t|
     t.text "body"
     t.string "country"
@@ -75,5 +83,6 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_21_124033) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "images", "posts"
   add_foreign_key "posts", "users"
 end

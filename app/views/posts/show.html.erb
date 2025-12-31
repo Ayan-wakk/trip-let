@@ -1,9 +1,9 @@
-<div class="w-screen bg-gray-50 sm:max-w-7xl mx-auto px-4 py-6">
+<div class="w-screen bg-white border-gray-600 sm:max-w-7xl mx-auto px-2 py-6 rounded-2xl">
 
   <div class="flex flex-col sm:flex-row gap-6">
     <!-- 左：画像エリア -->
     <% if @post.images.attached? %>
-      <div class="sm:w-3/4">
+      <div class="sm:w-3/5">
 
         <!-- メイン画像 -->
         <div class="relative">
@@ -12,7 +12,7 @@
                 id: "main-image",
                 loading: "eager",
                 decoding: "async",
-                class: "w-full h-96 sm:h-[680px] bg-white object-contain rounded-2xl" %>
+                class: "w-full h-auto sm:h-[680px] bg-white object-contain rounded-2xl" %>
 
           <!-- 左矢印 -->
           <button
@@ -47,28 +47,37 @@
     <% end %>
 
     <!-- 右：テキスト -->
-    <div class="sm:w-1/4">
+    <div class="sm:w-2/5 bg-[#F2EFE9] p-6 space-y-4 rounded-2xl overflow-auto max-h-[90vh]">
 
       <!-- タイトル -->
-      <h1 class="mt-6 text-2xl font-bold text-gray-800">
+      <h1 class="py-6 p-4 text-2xl bg-white font-bold text-stone-800 rounded-2xl">
         <%= @post.title %>
       </h1>
 
       <!-- メタ情報 -->
-      <div class="mt-2 text-sm text-gray-600">
+      <div class="text-base text-gray-600 mb-1 pl-3">
         <% if @post.visited_at.present? %>
-          <span>訪問日<%= @post.visited_at %></span>
+          <span>訪問日  <%= @post.visited_at %></span>
         <% end %>
       </div>
 
-      <!-- 本文 -->
-      <div class="mt-6 text-base text-gray-800 leading-relaxed whitespace-pre-line">
+      <div class="text-base text-gray-800 rounded pl-3">
+        <%= @post.country %>
+          <% if @post.region.present? %>
+            / <%= @post.region %>
+          <% end %>
+      </div>
+
+
+      <!-- 感想・メモ -->
+      <div class="py-6 p-4 text-lg bg-white text-gray-800 leading-relaxed
+                  whitespace-pre-line rounded-2xl">
         <%= @post.body %>
       </div>
 
-      <!-- ちょっとしたポイント -->
+      <!-- 知っておくと便利 -->
       <% if @post.warning.present? %>
-        <div class="mt-8 p-4 bg-white rounded-xl">
+        <div class="py-6 p-4 bg-sky-50 rounded-xl">
           <h2 class="font-semibold text-lg mb-2">
             💡 知っておくと便利！！
           </h2>
@@ -77,6 +86,10 @@
           </p>
         </div>
       <% end %>
+
+      <!-- 投稿者情報 いずれ追加する -->
+      <div class="flex items-center mt-6 space-x-3">
+      </div>
     </div>
   </div>
 </div>

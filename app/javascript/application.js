@@ -1,3 +1,7 @@
-// Entry point for the build script in your package.json
 import "@hotwired/turbo-rails"
+
+import { Application } from "@hotwired/stimulus"
+const application = Application.start()
+export { application }
+
 import "./controllers"

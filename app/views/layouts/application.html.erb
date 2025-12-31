@@ -14,7 +14,7 @@
 
     <!-- Tailwind CSS -->
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <%= javascript_importmap_tags %>
   </head>
 
   <body class="bg-sky-50 text-gray-900 min-h-screen flex flex-col">
@@ -26,12 +26,16 @@
     <% end %>
 
     <!-- Main -->
-    <main class="container mx-auto mt-10 px-4 flex-grow">
+    <main class="container mx-auto pt-32 sm:pt-36 flex-grow">
       <%= render 'shared/flash' %>
       <%= yield %>  
     </main>
 
     <!-- Footer -->
-    <%= render 'shared/footer' %>
+    <% if user_signed_in? %>
+      <%= render 'shared/footer1' %>
+    <% else %>
+      <%= render 'shared/footer2' %>
+    <% end %>
   </body>
 </html>

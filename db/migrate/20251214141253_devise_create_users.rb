@@ -3,7 +3,6 @@
 class DeviseCreateUsers < ActiveRecord::Migration[8.1]
   def change
     create_table :users do |t|
-
       ## User introduction
       t.string :name
       t.text :introduction
@@ -27,7 +26,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[8.1]
     end
 
     add_index :users, :email,                unique: true
-    add_index :users, [:provider, :uid], unique: true
+    add_index :users, [ :provider, :uid ], unique: true
     add_index :users, :reset_password_token, unique: true
   end
 end

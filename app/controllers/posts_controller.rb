@@ -1,16 +1,22 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, except: [:index]
+  before_action :authenticate_user!, except: [ :index ]
+  before_action :set_post, only: [ :show, :edit, :update, :destroy ]
 
   def index
-   # 投稿一覧ページ（誰でも見れる）
+    @posts = Post.where(is_public: true)
+                 .order(created_at: :desc)
   end
 
   def show
-    # 投稿詳細（ログイン必須）
+    @post = Post.find(params[:id])
+
+    unless @post.is_public? || @post.user == current_user # 投稿が公開されているまたは投稿者本人であるこのどちらでもない場合
+      redirect_to posts_path, alert: "この投稿は非公開です"
+    end
   end
 
   def new
-    # 投稿作成（ログイン必須）
+    @post = Post.new
   end
 
   def edit
@@ -18,14 +24,37 @@ class PostsController < ApplicationController
   end
 
   def create
-    # 投稿作成処理（ログイン必須）
+    @post = current_user.posts.build(post_params)
+
+    if @post.save
+      redirect_to posts_path, notice: "投稿を作成しました"
+    else
+      render :new
+    end
   end
 
   def update
-    # 投稿更新処理（ログイン必須）
+    if @post.update(post_params)
+      redirect_to @post, notice: "投稿を更新しました"
+    else
+      render :edit
+    end
   end
 
   def destroy
-    # 投稿削除（ログイン必須）
+    @post.destroy
+    redirect_to posts_path, notice: "投稿を削除しました"
+  end
+
+  private
+
+  def set_post
+    @post = Post.find(params[:id])
+  end
+
+  def post_params
+    params.require(:post).permit(
+      :title, :body, :country, :region,
+      :visited_at, :warning, :is_public, images: [])
   end
 end

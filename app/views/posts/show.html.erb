@@ -1,0 +1,150 @@
+<div class="w-screen bg-gray-50 sm:max-w-7xl mx-auto px-4 py-6">
+
+  <div class="flex flex-col sm:flex-row gap-6">
+    <!-- 左：画像エリア -->
+    <% if @post.images.attached? %>
+      <div class="sm:w-3/4">
+
+        <!-- メイン画像 -->
+        <div class="relative">
+          <%= image_tag @post.images.first.variant(
+                resize_to_limit: [800, 800], format: :webp).processed,
+                id: "main-image",
+                loading: "eager",
+                decoding: "async",
+                class: "w-full h-96 sm:h-[680px] bg-white object-contain rounded-2xl" %>
+
+          <!-- 左矢印 -->
+          <button
+            id="prev-image"
+            class="absolute left-2 top-1/2 -translate-y-1/2
+                   bg-white/80 hover:bg-white rounded-full p-2 shadow">
+          ◀
+          </button>
+
+          <!-- 右矢印 -->
+          <button
+            id="next-image"
+            class="absolute right-2 top-1/2 -translate-y-1/2
+                   bg-white/80 hover:bg-white rounded-full p-2 shadow">
+          ▶
+          </button>
+        </div>
+
+        <!-- サムネイル -->
+        <div class="mt-4 flex gap-2 overflow-x-auto">
+          <% @post.images.each_with_index do |image, index| %>
+            <% main_variant = image.variant(resize_to_limit: [800, 800], format: :webp).processed %>
+
+            <%= image_tag image.variant(resize_to_fill:[200, 200], format: :webp).processed,
+              class: "thumbnail h-24 w-24 object-cover rounded-lg shrink-0 border
+                      cursor-pointer #{index == 0 ? 'ring-2 ring-black' : ''}",
+              data: { image_url: url_for(main_variant) } %>
+          <% end %>
+        </div>
+
+      </div>
+    <% end %>
+
+    <!-- 右：テキスト -->
+    <div class="sm:w-1/4">
+
+      <!-- タイトル -->
+      <h1 class="mt-6 text-2xl font-bold text-gray-800">
+        <%= @post.title %>
+      </h1>
+
+      <!-- メタ情報 -->
+      <div class="mt-2 text-sm text-gray-600">
+        <% if @post.visited_at.present? %>
+          <span>訪問日<%= @post.visited_at %></span>
+        <% end %>
+      </div>
+
+      <!-- 本文 -->
+      <div class="mt-6 text-base text-gray-800 leading-relaxed whitespace-pre-line">
+        <%= @post.body %>
+      </div>
+
+      <!-- ちょっとしたポイント -->
+      <% if @post.warning.present? %>
+        <div class="mt-8 p-4 bg-white rounded-xl">
+          <h2 class="font-semibold text-lg mb-2">
+            💡 知っておくと便利！！
+          </h2>
+          <p class="whitespace-pre-line text-gray-700">
+            <%= @post.warning %>
+          </p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  document.addEventListener("turbo:load", () => {
+    const mainImage = document.getElementById("main-image");
+    if (!mainImage) return;
+
+    const thumbnails = Array.from(document.querySelectorAll(".thumbnail"));
+    if (thumbnails.length === 0) return;
+
+    const prevBtn = document.getElementById("prev-image");
+    const nextBtn = document.getElementById("next-image");
+
+    let currentIndex = thumbnails.findIndex(t =>
+      t.classList.contains("ring-2")
+    );
+    if (currentIndex === -1) currentIndex = 0;
+
+    function preload(index) {
+      if (!thumbnails[index]) return;
+      const img = new Image();
+      img.src = thumbnails[index].dataset.imageUrl;
+    }
+
+    function updateImage(index) {
+      if (!thumbnails[index]) return;
+      const thumbnail = thumbnails[index];
+      mainImage.src = thumbnail.dataset.imageUrl;
+
+      thumbnails.forEach(t =>
+        t.classList.remove("ring-2", "ring-black")
+      );
+      thumbnail.classList.add("ring-2", "ring-black");
+
+      currentIndex = index;
+
+      // 🔽 次と前を先読み
+      preload((index + 1) % thumbnails.length);
+      preload((index - 1 + thumbnails.length) % thumbnails.length);
+    }
+
+    thumbnails.forEach((thumbnail, index) => {
+      thumbnail.addEventListener("click", () => {
+        updateImage(index);
+      });
+    });
+
+    if (prevBtn) {
+      prevBtn.addEventListener("click", () => {
+        updateImage(
+          currentIndex === 0 ? thumbnails.length - 1 : currentIndex - 1
+        );
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener("click", () => {
+        updateImage(
+          currentIndex === thumbnails.length - 1 ? 0 : currentIndex + 1
+        );
+      });
+    }
+
+    // 初期表示時も先読み
+    preload((currentIndex + 1) % thumbnails.length);
+    preload((currentIndex - 1 + thumbnails.length) % thumbnails.length);
+  });
+</script>

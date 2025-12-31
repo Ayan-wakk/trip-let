@@ -1,7 +1,7 @@
 <%= form_with model: @post do |f| %>
   <div class="max-w-2xl mx-auto font-mono text-lg font-medium text-gray-800 px-4 py-4">
 
-    <div class="field mb-6">
+    <div class="field mb-3">
       <div>
         <%= f.label :images, "写真を追加（必須）", class: "block text-xl font-medium text-gray-700" %>
         <%= f.file_field :images, multiple: true,
@@ -9,7 +9,7 @@
       </div>
     </div>
 
-    <div class="field mb-6">
+    <div class="field mb-3">
       <div>
         <%= f.label :title, "タイトル（必須）", class: "block text-xl font-medium text-gray-700" %>
         <%= f.text_field :title, autofocus: true,
@@ -18,9 +18,9 @@
       </div>
     </div>
 
-    <div class="field mb-6">
+    <div class="field mb-3">
       <div>
-        <%= f.label :body, "本文（必須）", class: "block text-xl font-medium text-gray-700" %>
+        <%= f.label :body, "感想・メモ（必須）", class: "block text-xl font-medium text-gray-700" %>
         <%= f.text_area :body,
             class: "mt-2 w-full rounded-md border-2 border-gray-300 bg-white px-4 py-2 text-lg
                     focus:border-sky-500 focus:ring-2 focus:ring-sky-500" %>
@@ -37,7 +37,7 @@
         </div>
         <div>
         <%= f.label :region, "地域", class: "block text-xl font-medium text-gray-700" %>
-        <%= f.text_field :region, autofocus: true,
+        <%= f.text_field :region, autofocus: true, placeholder: "東京都 / 葛飾区",
             class: "mt-2 w-full h-12 rounded-md border-2 border-gray-300 bg-white px-4 py-2 text-lg
                     focus:border-sky-500 focus:ring-2 focus:ring-sky-500" %>
         </div>        
@@ -46,7 +46,7 @@
 
     <div class="field mb-4">
       <div>
-        <%= f.label :visited_at, "滞在日", class: "block text-xl font-medium text-gray-700" %>
+        <%= f.label :visited_at, "訪れた日", class: "block text-xl font-medium text-gray-700" %>
         <%= f.date_field :visited_at,
             class: "mt-2 w-full h-12 rounded-md border-2 border-gray-300 bg-white sm:px-4 py-2 text-lg
                     focus:border-sky-500 focus:ring-2 focus:ring-sky-500" %>
@@ -54,8 +54,8 @@
     </div>
 
     <div class="field mb-4">
-      <%= f.label :warning, "注意点", class: "block text-xl font-medium text-gray-700" %>
-        <%= f.text_area :warning,
+      <%= f.label :warning, "知っておくと便利", class: "block text-xl font-medium text-gray-700" %>
+        <%= f.text_area :warning, placeholder: "現金あった方がいい、予約した方がお得です",
             class: "mt-2 w-full rounded-md border-2 border-gray-300 bg-white px-4 py-2 text-lg
                     focus:border-sky-500 focus:ring-2 focus:ring-sky-500" %>
     </div>
@@ -64,7 +64,7 @@
       <%= f.check_box :is_public,
         class: "h-5 w-5 rounded border-gray-300 text-sky-600
                 focus:ring-sky-500" %>
-      <%= f.label :is_public, "公開する",
+      <%= f.label :is_public, "みんなに公開する",
         class: "text-xl text-gray-700 select-none" %>
     </div>
 

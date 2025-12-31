@@ -1,42 +1,47 @@
-<div class="relative text-center">
-  <h1 class="font-mono text-4xl font-medium text-gray-800 py-8">投稿一覧</h1>
-</div>
+<div class=" px-0 sm:px-4 py-0 sm:py-6">
 
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+<div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-1 sm:gap-4 lg:gap-6">
   <% @posts.each do |post| %>
     <%= link_to post_path(post),
-        class: "block rounded-xl bg-white shadow hover:shadow-lg transition overflow-hidden" do %>
+        class: "block bg-white shadow hover:shadow-lg transition overflow-hidden" do %>
 
       <!-- 画像 -->
       <% if post.images.attached? %>
-        <%= image_tag post.images.first, class: "h-48 w-full object-cover" %>
+        <div class="relative">
+          <%= image_tag post.images.first, class: "h-72 sm:h-64 w-full object-cover" %>
+
+          <!-- 国・地域（画像右下） -->
+          <div class="absolute bottom-2 right-2
+                      bg-white/90 text-gray-800
+                      text-xs px-2 py-1 rounded">
+            <%= post.country %>
+            <% if post.region.present? %>
+              / <%= post.region %>
+            <% end %>
+          </div>
+        </div>
       <% else %>
-        <div class="h-48 w-full bg-gray-200 flex items-center justify-center text-gray-500">
+        <div class="h-72 sm:h-64 w-full bg-gray-200
+                    flex items-center justify-center text-gray-500">
           No Image
         </div>
       <% end %>
 
       <!-- 下部 -->
-      <div class="p-4 flex gap-3">
+      <div class="p-2 sm:p-4 flex gap-2 sm:gap-3">
 
         <!-- 仮アイコン -->
-        <div class="h-10 w-10 rounded-full bg-gray-300
-                    flex items-center justify-center
+        <div class="h-8 w-8 sm:h-10 sm:w-10
+                    rounded-full bg-gray-300 flex
+                    items-center justify-center
                     text-gray-600 text-lg shrink-0">
           👤
         </div>
 
         <!-- テキスト -->
         <div class="min-w-0">
-          <p class="font-semibold text-base line-clamp-2">
+          <p class="font-semibold text-xs sm:text-base line-clamp-2">
             <%= post.title %>
-          </p>
-
-          <p class="mt-1 text-sm text-gray-600">
-            <%= post.country %>
-            <% if post.region.present? %>
-              / <%= post.region %>
-            <% end %>
           </p>
         </div>
 
@@ -44,4 +49,5 @@
 
     <% end %>
   <% end %>
+</div>
 </div>

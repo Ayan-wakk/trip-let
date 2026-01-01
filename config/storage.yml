@@ -10,7 +10,7 @@ b2:
   service: S3
   access_key_id: <%= ENV['B2_KEY_ID'] %>
   secret_access_key: <%= ENV['B2_APPLICATION_KEY'] %>
-  region: us-west-XXX
+  region: us-west-000
   bucket: trip-let
   endpoint: <%= ENV['B2_ENDPOINT'] %>
   force_path_style: true

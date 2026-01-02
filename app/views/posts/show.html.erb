@@ -70,8 +70,8 @@
 
 
       <!-- 感想・メモ -->
-      <div class="py-6 p-4 text-lg bg-white text-gray-800 leading-relaxed
-                  whitespace-pre-line rounded-2xl">
+      <div class="py-6 px-4 text-lg bg-white text-gray-800
+                  leading-relaxed rounded-2xl">
         <%= @post.body %>
       </div>
 
@@ -81,6 +81,7 @@
           <h2 class="font-semibold text-lg mb-2">
             💡 知っておくと便利！！
           </h2>
+          <div class="w-full border-t-2 border-gray-400 border-dotted"></div>
           <p class="whitespace-pre-line text-gray-700">
             <%= @post.warning %>
           </p>
@@ -90,6 +91,18 @@
       <!-- 投稿者情報 いずれ追加する -->
       <div class="flex items-center mt-6 space-x-3">
       </div>
+
+      <!-- 編集・削除ボタン(投稿者のみ) -->
+      <% if user_signed_in? && current_user == @post.user %>
+        <div class="flex flex-col gap-3">
+          <%= link_to "編集", edit_post_path(@post),
+              class: "w-full px-4 py-2 bg-sky-500 hover:bg-sky-400 text-center text-white rounded-lg" %>
+          <%= link_to "削除", post_path(@post),
+              method: :delete,
+              data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" },
+              class: "w-full px-4 py-2 border-2 bg-gray-300 hover:bg-gray-400 hover:text-white text-center rounded-lg" %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
@@ -129,7 +142,7 @@
 
       currentIndex = index;
 
-      // 🔽 次と前を先読み
+      // 次と前を先読み
       preload((index + 1) % thumbnails.length);
       preload((index - 1 + thumbnails.length) % thumbnails.length);
     }

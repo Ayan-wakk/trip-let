@@ -19,9 +19,7 @@ class PostsController < ApplicationController
     @post = Post.new
   end
 
-  def edit
-    # 投稿編集（ログイン必須）
-  end
+  def edit; end
 
   def create
     @post = current_user.posts.build(post_params)
@@ -34,10 +32,20 @@ class PostsController < ApplicationController
   end
 
   def update
-    if @post.update(post_params)
+    if params[:post][:remove_image_ids]
+      params[:post][:remove_image_ids].reject(&:blank?).each do |id|
+        @post.images.find(id).purge
+      end
+    end
+
+    @post.images.attach(post_params[:images]) if post_params[:images].present?
+
+    success = @post.update(post_params.except(:images))
+
+    if success
       redirect_to @post, notice: "投稿を更新しました"
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 

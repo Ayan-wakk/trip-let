@@ -1,4 +1,4 @@
-<header class="bg-blue-400 shadow-sm fixed top-0 w-full z-50" data-controller="menu">
+<header class="bg-blue-400 shadow-sm" data-controller="menu">
   <div class="container mx-auto flex items-center justify-between py-4 px-4 relative">
 
     <!-- ロゴ -->
@@ -19,8 +19,8 @@
 
         <!-- メニュー -->
         <div data-menu-target="menu"
-             class="hidden absolute right-0 mt-2 w-64
-                    rounded-xl bg-white shadow-lg p-4 space-y-2 z-50">
+             class="hidden absolute right-0 top-full mt-2 w-64
+                    rounded-xl bg-white shadow-lg p-4 space-y-2 z-[80]">
 
           <!-- マイページ -->
           <%= link_to "マイページ", "#", class: "menu-link" %>

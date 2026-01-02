@@ -19,11 +19,13 @@
 
   <body class="bg-sky-50 text-gray-900 min-h-screen flex flex-col">
     <!-- Header -->
-    <%= render 'shared/header1' %>
+    <div class="fixed top-0 w-full z-50">
+      <%= render 'shared/header1' %>
 
-    <% if user_signed_in? %>
-      <%= render 'shared/header2' %>
-    <% end %>
+      <% if user_signed_in? %>
+        <%= render 'shared/header2' %>
+      <% end %>
+    </div>
 
     <!-- Main -->
     <main class="container mx-auto pt-32 sm:pt-36 flex-grow">

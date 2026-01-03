@@ -3,8 +3,13 @@ class PostsController < ApplicationController
   before_action :set_post, only: [ :show, :edit, :update, :destroy ]
 
   def index
-    @posts = Post.where(is_public: true)
-                 .order(created_at: :desc)
+    if params[:scope] == "my"
+      @posts = current_user.posts.where(is_public: true)
+                                 .order(created_at: :desc)
+    else
+      @posts = Post.where(is_public: true)
+                   .order(created_at: :desc)
+    end
   end
 
   def show

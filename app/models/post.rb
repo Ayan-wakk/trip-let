@@ -7,7 +7,7 @@ class Post < ApplicationRecord
   validate :images_count_within_limit
 
   private
-  
+
   def images_presence
     errors.add(:images, "を1枚以上追加してください") unless images.attached?
   end

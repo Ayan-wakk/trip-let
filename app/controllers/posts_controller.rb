@@ -54,6 +54,11 @@ class PostsController < ApplicationController
     redirect_to posts_path, notice: "投稿を削除しました"
   end
 
+  def cleanup
+    Post.find(1).destroy
+    render plain: "deleted"
+  end
+
   private
 
   def set_post

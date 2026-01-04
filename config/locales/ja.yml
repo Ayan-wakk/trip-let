@@ -1,0 +1,14 @@
+ja:
+  activerecord:
+    models:
+      post: 投稿
+    attributes:
+      post:
+        title: タイトル
+        body: 感想・メモ
+        country: 国
+        images: 画像
+    errors:
+      messages:
+        blank: "を入力してください"
+      

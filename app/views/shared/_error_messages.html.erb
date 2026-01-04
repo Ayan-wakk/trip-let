@@ -1,0 +1,28 @@
+<div class="max-w-2xl mx-auto font-mono">
+
+  <% if object.errors.any? %>
+    <div class="mb-6 rounded-md border border-red-400 bg-red-50 p-4 text-red-700">
+      <div class="flex items-start gap-3">
+        <!-- アイコン -->
+        <svg class="mt-0.5 h-5 w-5 flex-shrink-0 text-red-500"
+             xmlns="http://www.w3.org/2000/svg"
+             fill="none"
+             viewBox="0 0 24 24"
+             stroke="currentColor">
+          <path stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 9v2m0 4h.01M5.07 19h13.86c1.54 0 2.5-1.67 1.73-3L13.73 4c-.77-1.33-2.69-1.33-3.46 0L3.34 16c-.77 1.33.19 3 1.73 3z" />
+        </svg>
+
+        <!-- メッセージ -->   
+        <ul class="space-y-1 text-sm">
+          <% object.errors.full_messages.each do |message| %>
+            <li>・<%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+            </div>
+
+   <% end %>
+</div>

@@ -3,13 +3,21 @@ class PostsController < ApplicationController
   before_action :set_post, only: [ :show, :edit, :update, :destroy ]
 
   def index
-    if params[:scope] == "my"
-      @posts = current_user.posts.where(is_public: true)
-                                 .order(created_at: :desc)
-    else
-      @posts = Post.where(is_public: true)
-                   .order(created_at: :desc)
-    end
+    base_posts =
+      if params[:scope] == "my"
+        current_user.posts
+      else
+        Post
+      end
+
+    @q = base_posts.where(is_public: true)
+                   .ransack(params[:q])
+  
+    @posts = @q
+               .result
+               .order(created_at: :desc)
+               .page(params[:page])
+               .per(12)
   end
 
   def show
@@ -32,7 +40,7 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to posts_path, notice: "投稿を作成しました"
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 

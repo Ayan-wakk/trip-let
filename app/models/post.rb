@@ -6,6 +6,15 @@ class Post < ApplicationRecord
   validate :images_presence
   validate :images_count_within_limit
 
+  def self.ransackable_attributes(auth_object = nil)
+    %w[title body country region]
+  end
+
+  #  関連検索はしない
+  def self.ransackable_associations(auth_object = nil)
+    []
+  end
+
   private
 
   def images_presence

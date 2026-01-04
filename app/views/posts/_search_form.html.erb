@@ -1,0 +1,20 @@
+  <div class="container mx-auto flex items-center justify-between py-4 px-4 relative">
+
+    <%= search_form_for @q, url: posts_path, method: :get,
+        class: "max-w-2xl mx-auto mb-6" do |f| %>
+
+      <div class="flex gap-2">
+        <%= f.search_field :title_or_body_or_country_or_region_cont,
+              placeholder: "キーワードで検索",
+              class: "w-full rounded-md border border-gray-300 px-4 py-2 text-sm
+                      focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500" %>
+
+        <%= f.submit "検索",
+              class: "rounded-md bg-blue-600 px-4 py-2 text-sm text-white hover:bg-blue-700" %>
+       </div>
+
+       <%# my / all の状態を保持 %>
+       <%= hidden_field_tag :scope, params[:scope] if params[:scope].present? %>
+
+       <% end %>
+   </div>

@@ -17,7 +17,7 @@ class PostsController < ApplicationController
                .result
                .order(created_at: :desc)
                .page(params[:page])
-               .per(12)
+               .per(8)
   end
 
   def show

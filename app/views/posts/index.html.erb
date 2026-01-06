@@ -1,9 +1,12 @@
 <div class=" px-0 sm:px-4 py-0 sm:py-6">
 
+  <%= render 'search_form' %>
+
   <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-1 sm:gap-4 lg:gap-6">
     <% @posts.each do |post| %>
 
-      <div class="block bg-white shadow hover:shadow-lg transition overflow-hidden">
+      <div class="block bg-white shadow hover:shadow-lg transition overflow-hidden
+                  hover:shadow-2xl hover:-translate-y-2 transition transform duration-300">
 
         <%= link_to post_path(post) do %>
 
@@ -34,10 +37,12 @@
 
             <!-- 仮アイコン -->
             <div class="h-8 w-8 sm:h-10 sm:w-10
-                        rounded-full bg-gray-300 flex
+                        rounded-full flex
                         items-center justify-center
                         text-gray-600 text-lg shrink-0">
-              👤
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-10">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+              </svg>
             </div>
 
             <!-- テキスト -->
@@ -55,7 +60,7 @@
 
             <%= link_to edit_post_path(post),
                 class: "text-gray-600 hover:text-blue-600 transition" do %>
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5"
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7"
                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                       d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5
@@ -66,7 +71,7 @@
             <%= link_to post_path(post),
                 data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" },
                 class: "text-gray-600 hover:text-red-600 transition" do %>
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5"
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7"
                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                       d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862
@@ -79,5 +84,9 @@
         </div>
       </div>
     <% end %>
+  </div>
+
+  <div class="mt-8 flex">
+    <%= paginate @posts %>
   </div>
 </div>

@@ -1,6 +1,7 @@
 <%= form_with model: post, local: true, multipart: true do |f| %>
   <div class="max-w-2xl mx-auto font-mono text-lg font-medium text-gray-800 px-4 py-4">
 
+    <!-- 画像アップロード -->
     <div class="field mb-3">
       <div>
         <%= f.label :images, "画像（必須 ※5枚まで）", class: "block font-medium text-gray-700 py-2"  %>
@@ -11,17 +12,23 @@
         </label>
       </div>
     </div>
-    
-    <div id="image-preview" class="flex gap-3 flex-wrap mb-4 py-4"
-      data-existing='<%= @post.images.map { |i| {id: i.id, url: url_for(i)} }.to_json %>'>
-    </div>
+
+    <!-- 画像アップロード -->
+    <%  if post.persisted? %>
+      <div id="image-preview" class="flex gap-3 flex-wrap mb-4 py-4"
+        data-existing='<%= post.images.map { |i| {id: i.id, url: url_for(i)} }.to_json %>'>
+      </div>
+    <% else %>
+      <div id="image-preview" class="flex gap-3 flex-wrap mb-4 py-4"></div>
+    <% end %>
 
     <%= hidden_field_tag "post[remove_image_ids][]", "", id: "remove-image-ids" %>
 
+    <!-- タイトル以降 -->
     <div class="field mb-3">
       <div>
         <%= f.label :title, "タイトル（必須）", class: "block text-xl font-medium text-gray-700" %>
-        <%= f.text_field :title, autofocus: true,
+        <%= f.text_field :title, autofocus: true, placeholder: "場所・レストラン・カフェ・ホテルなど",
             class: "mt-2 w-full rounded-md border-2 border-gray-300 bg-white px-4 py-2 text-lg
                     focus:border-sky-500 focus:ring-2 focus:ring-sky-500" %>
       </div>

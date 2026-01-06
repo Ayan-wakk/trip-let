@@ -4,4 +4,5 @@
   </p>
 </div>
 
-<%= render 'form', post: @post %>
+<%= render "shared/error_messages", object: @post %>
+<%= render "form", post: @post %>

@@ -20,11 +20,7 @@
   <body class="bg-sky-50 text-gray-900 min-h-screen flex flex-col">
     <!-- Header -->
     <div class="fixed top-0 w-full z-50">
-      <%= render 'shared/header1' %>
-
-      <% if user_signed_in? %>
-        <%= render 'shared/header2' %>
-      <% end %>
+      <%= render 'shared/header' %>
     </div>
 
     <!-- Main -->

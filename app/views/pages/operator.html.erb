@@ -1,0 +1,68 @@
+<% content_for :title, "運営者・お問い合わせ | Trip-let" %>
+
+<div class="mt-16 mx-auto flex w-full max-w-6xl flex-col gap-8 lg:flex-row">
+
+  <!-- 運営者情報・お問い合わせ -->
+  <div class="box-border flex w-full flex-col rounded-3xl bg-white/95 p-6 shadow-xl ring-1 ring-slate-200 backdrop-blur lg:p-8">
+    <header class="space-y-2 text-center">
+      <h1 class="text-2xl font-black text-slate-900">運営者情報・お問い合わせ</h1>
+    </header>
+
+    <div class="mt-6 h-px w-full bg-gradient-to-r from-transparent via-[#F95858]/40 to-transparent"></div>
+
+    <!-- プロフィール画像 -->
+    <div class="mt-2 py-8 flex flex-col items-center text-center">
+      <%= image_tag "profile.jpg",
+          class: "h-28 w-28 rounded-full object-cover ring-2 ring-slate-200",
+          alt: "Ayan プロフィール画像" %>
+    </div>
+
+    <div class="mt-6 space-y-4 text-sm text-slate-700 md:text-base">
+      <p class="text-base font-semibold text-slate-900 md:text-lg">
+        運営者：Ayan
+      </p>
+    </div>
+
+    <div class="text-left">
+      <p class="mt-2 py-2">
+        プログラミングスクール RUNTEQ にて学習中のエンジニア志望です。
+        旅行やおでかけが好きで、自身の体験を振り返りながら次に活かすことを大切にしています。
+        ユーザー視点で考えることと、継続的に改善していく姿勢を意識して学習・開発に取り組んでいます。
+      </p>
+
+      <ul class="list-disc pl-5 py-4">
+        <li>
+          お問い合わせ：
+          <%= link_to "Googleフォーム",
+                      "https://docs.google.com/forms/d/e/1FAIpQLScYsePnuKcZBCXim3TdOnQ2HtWP0XgIyfvr6sW0U_waRJXVrg/viewform?usp=dialog",
+                      class: "underline decoration-slate-300 underline-offset-4 transition hover:text-[#F95858] hover:decoration-[#F95858]",
+                      target: "_blank",
+                      rel: "noopener" %>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 開発コンセプト -->
+  <div class="box-border flex w-full flex-col rounded-3xl bg-white/95 p-6 shadow-xl ring-1 ring-slate-200 backdrop-blur lg:p-8">
+    <header class="space-y-2 text-center">
+      <h1 class="text-2xl font-black text-slate-900">✈️ Trip-let作成にあたり ✈️</h1>
+    </header>
+
+    <div class="mt-6 h-px w-full bg-gradient-to-r from-transparent via-[#F95858]/40 to-transparent"></div>
+
+    <div class="mt-6 space-y-4 text-sm leading-relaxed text-slate-700 md:text-base">
+
+      <p class="mt-2 py-2">
+        Trip-let は、旅行者の一次体験を「記録カード」として共有し、
+        他人の体験を自分の旅の計画に活かせるサービスです。
+      </p>
+
+      <p>
+        SNSでは拾いきれない注意点や時期感、予約の必要性などを蓄積し、
+        思いがけず新しい「好きな場所」と出会える体験を目指しています。
+        今後はコメント機能や、記録をもとにした旅のしおり機能の実装を予定しています。
+      </p>
+    </div>
+  </div>
+</div>

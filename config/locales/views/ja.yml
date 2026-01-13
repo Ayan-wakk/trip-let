@@ -19,3 +19,16 @@ ja:
       password_length:
         one: "（%{count}文字以上）"
         other: "（%{count}文字以上）"
+      new:
+        reset_password: パスワード再設定 
+        email: "メールアドレス"
+        back_to_login: "ログインに戻る"
+        send_reset_password_email: "再設定メールを送信"
+      edit:
+        reset_password: パスワード再設定
+        new_password: 新しいパスワード
+        password_confirmation: 新しいパスワード（確認）
+        change_password: パスワードを変更
+        password_minimum: "%{count}文字以上"
+        
+

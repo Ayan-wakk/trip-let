@@ -1,16 +1,35 @@
-<h2>Forgot your password?</h2>
+<div class="flex justify-center items-start py-15">
+  <div class="w-full sm:w-[360px] md:w-[420px]  p-8 bg-white rounded-xl shadow-2xl hover:shadow-2xl">    
+    <h2 class="text-3xl font-bold text-center text-gray-800 mb-6">
+      <%= t(".reset_password") %>
+    </h2>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name)) do |f| %>
+      <div class="mt-10">
+        <%= f.label :email, t(".email"), class: "block text-lg font-medium text-gray-700" %>
+        <%= f.email_field :email,
+              autofocus: true,
+              autocomplete: "email",
+          class: "mt-2 w-full rounded-md border-2 border-gray-300
+                  bg-white px-4 py-2 text-lg
+                  focus:border-sky-500 focus:ring-2 focus:ring-sky-500" %>
+      </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      <div class="mt-6 text-center">
+        <%= f.submit t(".send_reset_password_email"),
+              class: "w-full py-3 rounded-lg
+                      text-lg font-semibold text-white
+                      bg-blue-500 hover:bg-blue-400
+                      shadow-md hover:shadow-lg
+                      focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2
+                      transition
+                      " %>
+      </div>
+    <% end %>
+
+    <div class="mt-8 text-center text-sm">
+      <%= link_to t(".back_to_login"), new_session_path(resource_name),
+            class: "text-blue-600 hover:underline" %>
+    </div>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

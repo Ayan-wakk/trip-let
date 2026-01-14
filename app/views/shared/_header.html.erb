@@ -23,14 +23,17 @@
                     rounded-xl bg-white shadow-lg p-4 space-y-2 z-[80]">
 
           <!-- マイページ -->
-          <%= link_to "マイページ", "#", class: "menu-link" %>
+          <%= link_to "マイプロフィール", "#", class: "menu-link  block hover:bg-gray-100 hover:text-blue-600 rounded" %>
+
+          <!-- アカウント -->
+          <%= link_to "アカウント", edit_user_registration_path, class: "menu-link  block hover:bg-gray-100 hover:text-blue-600 rounded" %>
 
           <hr>
 
           <!-- 情報系 -->
-          <%= link_to "利用規約", terms_path, class: "menu-link" %><br>
-          <%= link_to "プライバシーポリシー", privacy_path, class: "menu-link" %><br>
-          <%= link_to "お問い合わせ", operator_path, class: "menu-link" %>
+          <%= link_to "利用規約", terms_path, class: "menu-link  block hover:bg-gray-100 hover:text-blue-600 rounded" %>
+          <%= link_to "プライバシーポリシー", privacy_path, class: "menu-link  block hover:bg-gray-100 hover:text-blue-600 rounded" %>
+          <%= link_to "お問い合わせ", operator_path, class: "menu-link  block hover:bg-gray-100 hover:text-blue-600 rounded" %>
 
           <hr>
 
@@ -39,7 +42,7 @@
                         destroy_user_session_path,
                         method: :delete,
                         data: { turbo: false },
-                        class: "menu-link hover:bg-red-50" %>
+                       class: "menu-link  block hover:bg-gray-100 hover:text-blue-600 rounded" %>
 
         </div>
         <!-- ★ メニューここまで -->

@@ -11,4 +11,7 @@ ja:
     errors:
       messages:
         blank: "を入力してください"
-      
+    devise:
+     passwords:
+       new:
+         title: パスワード再設定  

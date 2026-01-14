@@ -6,6 +6,9 @@ ja:
       not_found_in_database: "メールアドレスまたはパスワードが違います。"
       unauthenticated: "ログインしてください。"
       timeout: "セッションの有効期限が切れました。再度ログインしてください。"
+      unconfirmed: "アカウントの確認が完了していません。確認メールを送信していますので、メール内のリンクをクリックしてください。"
+      user:
+        unconfirmed: "アカウントの確認が完了していません。確認メールを送信していますので、メール内のリンクをクリックしてください。"
 
     sessions:
       signed_in: "ログインしました。"
@@ -16,14 +19,49 @@ ja:
       signed_up: "ユーザー登録が完了しました。"
       updated: "アカウント情報を更新しました。"
       destroyed: "アカウントを削除しました。"
+      signed_up_but_unconfirmed: "確認メールを送信しました。メール内のリンクをクリックして登録を完了してください。"
+      update_needs_confirmation: "確認メールを送信しました。メール内のリンクをクリックして変更を完了してください。"
+      user:
+        signed_up_but_unconfirmed: "確認メールを送信しました。メール内のリンクをクリックして登録を完了してください。"
+        update_needs_confirmation: "確認メールを送信しました。メール内のリンクをクリックして変更を完了してください。"
 
     passwords:
       send_instructions: "パスワード再設定用のメールを送信しました。"
       updated: "パスワードを変更しました。"
       updated_not_active: "パスワードを変更しました。"
 
+    confirmations:
+      send_instructions: "確認メールを送信しました。"
+      confirmed: "メールアドレスの確認が完了しました。"
+      already_confirmed: "このメールアドレスはすでに確認済みです。"
+
   errors:
     messages:
+      blank: "を入力してください"
+      confirmation: "が一致しません"
+      taken: "はすでに使用されています"
+      too_short: "は%{count}文字以上で入力してください"
+      already_confirmed: "このメールアドレスはすでに確認済みです。"
       not_saved:
         one: "1件のエラーがあります"
         other: "%{count}件のエラーがあります"
+
+  activerecord:
+    attributes:
+      user:
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "パスワード（確認）"
+        current_password: "現在のパスワード"
+        reset_password_token: "パスワード再設定用トークン"
+
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              already_confirmed: "このメールアドレスはすでに確認済みです。"
+            reset_password_token:
+              invalid: "パスワード再設定用のリンクが無効、または期限切れです。"
+            current_password:
+              invalid: "が正しくありません"

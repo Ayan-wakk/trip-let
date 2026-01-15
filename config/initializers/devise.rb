@@ -1,3 +1,6 @@
+OmniAuth.config.allowed_request_methods = [:post, :get]
+OmniAuth.config.silence_get_warning = true
+
 Devise.setup do |config|
   config.mailer_sender = "please-change-me-at-config-initializers-devise@example.com"
 

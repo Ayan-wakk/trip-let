@@ -12,7 +12,7 @@ class PostsController < ApplicationController
 
     @q = base_posts.where(is_public: true)
                    .ransack(params[:q])
-  
+
     @posts = @q
                .result
                .order(created_at: :desc)

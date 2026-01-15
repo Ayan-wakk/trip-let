@@ -42,7 +42,7 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address: 'host.docker.internal',
+    address: "host.docker.internal",
     port: 1025
   }
 

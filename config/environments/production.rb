@@ -23,18 +23,25 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'trip-let.onrender.com', protocol: 'https' }
   config.action_mailer.asset_host = 'https://trip-let.onrender.com'
   
+# メールのリンク先URLと画像のホスト設定
+  config.action_mailer.default_url_options = { host: 'trip-let.onrender.com', protocol: 'https' }
+  config.action_mailer.asset_host = 'https://trip-let.onrender.com'
+  
+  # SMTP（Gmailサーバー）を利用した送信設定
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
+  
   config.action_mailer.smtp_settings = {
     address:              'smtp.gmail.com',
-    port:                 587,
+    port:                 465,               # 587でタイムアウトしたため、より確実な465に変更
     domain:               'gmail.com',
     user_name:            ENV['GMAIL_USER'],
     password:             ENV['GMAIL_PASSWORD'],
     authentication:       'plain',
-    enable_starttls_auto: true,
-    open_timeout:         5,
-    read_timeout:         5
+    ssl:                  true,              # 465番ポート使用時に必須
+    tls:                  true,              # セキュリティ強化
+    open_timeout:         10,                # 接続待ち時間を少し延長
+    read_timeout:         10
   }
 
   # --- その他 ---

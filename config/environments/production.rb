@@ -33,15 +33,14 @@ Rails.application.configure do
   
   config.action_mailer.smtp_settings = {
     address:              'smtp.gmail.com',
-    port:                 465,               # 587でタイムアウトしたため、より確実な465に変更
+    port:                 587,
     domain:               'gmail.com',
     user_name:            ENV['GMAIL_USER'],
     password:             ENV['GMAIL_PASSWORD'],
     authentication:       'plain',
-    ssl:                  true,              # 465番ポート使用時に必須
-    tls:                  true,              # セキュリティ強化
-    open_timeout:         10,                # 接続待ち時間を少し延長
-    read_timeout:         10
+    enable_starttls_auto: true,
+    open_timeout:         30,                # 接続待ち時間
+    read_timeout:         30
   }
 
   # --- その他 ---

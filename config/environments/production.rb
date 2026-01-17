@@ -23,24 +23,22 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'trip-let.onrender.com', protocol: 'https' }
   config.action_mailer.asset_host = 'https://trip-let.onrender.com'
   
-# メールのリンク先URLと画像のホスト設定
+# --- メールのリンク先URLと画像のホスト設定 ---
   config.action_mailer.default_url_options = { host: 'trip-let.onrender.com', protocol: 'https' }
   config.action_mailer.asset_host = 'https://trip-let.onrender.com'
   
-  # SMTP（Gmailサーバー）を利用した送信設定
+  # --- Brevoを使用したメール送信設定 ---
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   
   config.action_mailer.smtp_settings = {
-    address:              'smtp.gmail.com',
+    address:              'smtp-relay.brevo.com',
     port:                 587,
-    domain:               'gmail.com',
-    user_name:            ENV['GMAIL_USER'],
-    password:             ENV['GMAIL_PASSWORD'],
+    domain:               'trip-let.onrender.com',
+    user_name:            ENV['BREVO_USER'],     # Renderで設定したメールアドレス
+    password:             ENV['BREVO_PASSWORD'], # さっきコピーした64文字の長いキー
     authentication:       'plain',
-    enable_starttls_auto: true,
-    open_timeout:         30,                # 接続待ち時間
-    read_timeout:         30
+    enable_starttls_auto: true
   }
 
   # --- その他 ---

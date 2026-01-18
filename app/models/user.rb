@@ -29,6 +29,6 @@ def self.from_omniauth(auth)
       Rails.logger.error "--------------------------------------------------"
     end
 
-    user # 最後にuserを返してあげる必要があります
+    user # 最後にuserを返す
   end
 end

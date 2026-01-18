@@ -29,12 +29,15 @@ Rails.application.configure do
  
   config.action_mailer.smtp_settings = {
     address:              'smtp-relay.brevo.com',
-    port:                 587,
+    port:                 465,
     domain:               'trip-let.onrender.com',
     user_name:            ENV['BREVO_USER'],     # Renderで設定したメールアドレス
     password:             ENV['BREVO_PASSWORD'], # コピーした64文字の長いキー
     authentication:       'plain',
-    enable_starttls_auto: true
+    enable_starttls_auto: false,  # ← falseに変更
+    ssl:                  true,    # ← 追加
+    open_timeout:         30,      # ← タイムアウト設定を追加
+    read_timeout:         30       # ← タイムアウト設定を追加
   }
 
   # --- その他 ---

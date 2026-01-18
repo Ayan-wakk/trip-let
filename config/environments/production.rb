@@ -31,12 +31,12 @@ Rails.application.configure do
     address:              'smtp-relay.brevo.com',
     port:                 587,
     domain:               'trip-let.onrender.com',
-    user_name:            ENV['BREVO_USER'],     # Renderで設定したメールアドレス
-    password:             ENV['BREVO_PASSWORD'], # コピーした64文字の長いキー
+    user_name:            ENV['BREVO_USER'],
+    password:             ENV['BREVO_PASSWORD'],
     authentication:       'plain',
-    enable_starttls_auto: true,  # ← falseに変更
-    open_timeout:         30,      # ← タイムアウト設定を追加
-    read_timeout:         30       # ← タイムアウト設定を追加
+    enable_starttls_auto: true,
+    open_timeout:         30,
+    read_timeout:         30
   }
 
   # --- その他 ---

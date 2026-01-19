@@ -9,6 +9,11 @@ ja:
       unconfirmed: "アカウントの確認が完了していません。確認メールを送信していますので、メール内のリンクをクリックしてください。"
       user:
         unconfirmed: "アカウントの確認が完了していません。確認メールを送信していますので、メール内のリンクをクリックしてください。"
+    
+    omniauth_callbacks:
+      success: "%{kind} アカウントからの認証に成功しました。"
+      user:
+        success: "Googleアカウントでのログインに成功しました。"
 
     sessions:
       signed_in: "ログインしました。"

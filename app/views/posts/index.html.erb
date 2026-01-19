@@ -19,7 +19,7 @@
               <div class="absolute bottom-2 right-2
                           bg-white/90 text-gray-800
                           text-xs px-2 py-1 rounded">
-                <%= post.country %>
+                <%= country_name(post.country) %>
                 <% if post.region.present? %>
                   / <%= post.region %>
                 <% end %>

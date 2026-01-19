@@ -67,4 +67,9 @@ module CountriesHelper
       [ "その他", "OTHER" ]
     ]
   end
+
+  def country_name(code)
+    option = country_options.find { |name, val| val == code }
+    option ? option[0] : code
+  end
 end

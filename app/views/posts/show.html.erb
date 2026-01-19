@@ -1,6 +1,10 @@
-<div class="w-screen bg-white border-gray-600 sm:max-w-7xl mx-auto px-2 py-6 rounded-2xl">
+<div class="w-screen sm:max-w-7xl mx-auto px-6 py-12 rounded-3xl border border-gray-200 shadow-inner"
+     style="background-color: #ffffff;
+            background-image: linear-gradient(#e5e5e5 1px, transparent 1px), linear-gradient(90deg, #e5e5e5 1px, transparent 1px);
+            background-size: 1.5rem 1.5rem;">
   
-  <div class="flex flex-col sm:flex-row gap-6">
+  <div class="flex flex-col sm:flex-row gap-10 items-start">
+
     <!-- 左：画像エリア -->
     <% if @post.images.attached? %>
       <div class="sm:w-3/5">
@@ -12,7 +16,7 @@
                 id: "main-image",
                 loading: "eager",
                 decoding: "async",
-                class: "w-full h-auto sm:h-[680px] bg-white object-contain rounded-2xl" %>
+                class: "w-full h-auto sm:h-[680px] object-contain rounded-2xl shadow-2xl ring-1 ring-black/5" %>
 
           <!-- 左矢印 -->
           <button
@@ -55,34 +59,43 @@
       </h1>
 
       <!-- メタ情報 -->
-      <div class="text-base text-gray-600 mb-1 pl-3">
+      <div class="px-3 space-y-1">
         <% if @post.visited_at.present? %>
-          <span>訪問日  <%= @post.visited_at %></span>
+          <div class="flex items-center text-sm text-gray-600">
+            <span class="w-16 shrink-0 text-gray-400">訪問日</span>
+            <span class="font-medium"><%= @post.visited_at %></span>
+         </div>
         <% end %>
-      </div>
 
-      <div class="text-base text-gray-800 rounded pl-3">
-        <%= @post.country %>
-          <% if @post.region.present? %>
-            / <%= @post.region %>
-          <% end %>
+        <div class="flex items-center text-sm text-gray-600">
+          <span class="w-16 shrink-0 text-gray-400">エリア</span>
+          <span class="font-medium">
+            <%= country_name(@post.country) %>
+            <% if @post.region.present? %>
+              / <%= @post.region %>
+            <% end %>
+          </span>
+        </div>
       </div>
-
 
       <!-- 感想・メモ -->
-      <div class="py-6 px-4 text-lg bg-white text-gray-800
-                  leading-relaxed rounded-2xl">
+      <div class="pt-2 px-6 pb-10 text-lg bg-white text-gray-800
+                  leading-[2rem] rounded-2xl whitespace-pre-line shadow-sm border border-gray-100">
         <%= @post.body %>
       </div>
 
       <!-- 知っておくと便利 -->
       <% if @post.warning.present? %>
-        <div class="py-6 p-4 bg-sky-50 rounded-xl">
-          <h2 class="font-semibold text-lg mb-2">
-            💡 知っておくと便利！！
+        <div class="mt-4 pt-5 px-6 pb-10 bg-sky-50 rounded-2xl relative overflow-hidden">
+          <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-sky-500"></div>
+
+          <h2 class="flex items-center font-bold text-sky-600 text-lg tracking-wider uppercase mb-2">
+            <span class="mr-2">💡知っておくと便利</span> 
           </h2>
-          <div class="w-full border-t-2 border-gray-400 border-dotted"></div>
-          <p class="whitespace-pre-line text-gray-700">
+    
+          <div class="mb-4 w-full border-t border-sky-200 border-dotted"></div>
+    
+          <p class="whitespace-pre-line text-lg text-gray-700 leading-relaxed font-medium">
             <%= @post.warning %>
           </p>
         </div>

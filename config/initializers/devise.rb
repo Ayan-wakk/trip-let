@@ -2,8 +2,6 @@ OmniAuth.config.allowed_request_methods = [:post, :get]
 OmniAuth.config.silence_get_warning = true
 
 Devise.setup do |config|
-  config.mailer_sender = "please-change-me-at-config-initializers-devise@example.com"
-
   require "devise/orm/active_record"
 
   config.case_insensitive_keys = [ :email ]
@@ -18,6 +16,7 @@ Devise.setup do |config|
   config.sign_out_via = :delete
   config.responder.error_status = :unprocessable_entity
   config.responder.redirect_status = :see_other
+  config.mailer_sender = ENV["GMAIL_ADDRESS"]
 
   config.omniauth :google_oauth2,
                   ENV["GOOGLE_CLIENT_ID"],

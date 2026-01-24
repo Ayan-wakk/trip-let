@@ -4,9 +4,16 @@
         class: "max-w-2xl mx-auto mb-6" do |f| %>
 
       <div class="flex gap-2">
+        <!-- 国選択 -->
+        <%= f.select :country_eq,
+              country_options,
+              { include_blank: "国を選択" },
+              class: " bg-white rounded-md border border-gray-300 px-3 py-2 text-sm",
+              onchange: "this.form.submit();" %>
+
         <%= f.search_field :title_or_body_or_country_or_region_cont,
               placeholder: "キーワードで検索",
-              class: "w-full rounded-md border border-gray-300 px-4 py-2 text-sm
+              class: "w-full bg-white rounded-md border border-gray-300 px-4 py-2 text-sm
                       focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500" %>
 
         <%= f.submit "検索",

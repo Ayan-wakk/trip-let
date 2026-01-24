@@ -7,17 +7,16 @@ class PostsController < ApplicationController
       if params[:scope] == "my"
         current_user.posts
       else
-        Post
+        Post.where(is_public: true)
       end
 
-    @q = base_posts.where(is_public: true)
-                   .ransack(params[:q])
+    @q = base_posts.ransack(params[:q])
 
     @posts = @q
                .result
                .order(created_at: :desc)
                .page(params[:page])
-               .per(8)
+               .per(20)
   end
 
   def show

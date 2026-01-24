@@ -1,6 +1,8 @@
-<div class="w-screen sm:max-w-7xl mx-auto px-6 py-12 rounded-3xl border border-gray-200 shadow-inner"
+<div class="w-screen sm:max-w-7xl mx-auto px-6 py-12 mt-6 rounded-3xl border border-gray-200 shadow-inner"
      style="background-color: #ffffff;
-            background-image: linear-gradient(#e5e5e5 1px, transparent 1px), linear-gradient(90deg, #e5e5e5 1px, transparent 1px);
+            background-image:
+              linear-gradient(rgba(120, 110, 100, 0.15) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(120, 110, 100, 0.15) 1px, transparent 1px);
             background-size: 1.5rem 1.5rem;">
   
   <div class="flex flex-col sm:flex-row gap-10 items-start">
@@ -9,14 +11,39 @@
     <% if @post.images.attached? %>
       <div class="sm:w-3/5">
 
-        <!-- メイン画像 -->
-        <div class="relative">
+        <!-- メイン画像  -->
+        <div class="relative mx-auto w-fit rotate-[-2deg]">
           <%= image_tag @post.images.first.variant(
                 resize_to_limit: [800, 800], format: :webp).processed,
                 id: "main-image",
                 loading: "eager",
                 decoding: "async",
-                class: "w-full h-auto sm:h-[680px] object-contain rounded-2xl shadow-2xl ring-1 ring-black/5" %>
+                class: "h-[520px] w-auto object-contain bg-white p-5
+                        rounded-sm border border-gray-200 shadow-[0_12px_30px_rgba(0,0,0,0.25)]" %>
+
+          <!-- マスキングテープ -->
+          <span class="absolute -top-5 left-1/2 -translate-x-1/2
+                       w-50 h-9
+                       rotate-[-2deg]
+                       z-20
+                       rounded-[4px]
+                       opacity-95
+                       bg-[#c3d2a4]
+                       shadow-[0_3px_6px_rgba(0,0,0,0.22)]
+                       before:absolute before:inset-0
+                       before:bg-[repeating-linear-gradient(
+                       -45deg,
+                       rgba(255,255,255,0.2),
+                       rgba(255,255,255,0.2)_2px,
+                       transparent_2px,
+                       transparent_4px
+                       )]
+                       before:rounded-[4px]
+                       after:absolute after:inset-0
+                       after:border after:border-white/25
+                       after:rounded-[4px]
+                       ">
+           </span>
 
           <!-- 左矢印 -->
           <button
@@ -36,7 +63,7 @@
         </div>
 
         <!-- サムネイル -->
-        <div class="mt-4 flex gap-2 overflow-x-auto">
+        <div class="mt-12 flex gap-2 overflow-x-auto">
           <% @post.images.each_with_index do |image, index| %>
             <% main_variant = image.variant(resize_to_limit: [800, 800], format: :webp).processed %>
 
@@ -51,24 +78,31 @@
     <% end %>
 
     <!-- 右：テキスト -->
-    <div class="sm:w-2/5 bg-[#F2EFE9] p-6 space-y-4 rounded-2xl overflow-auto max-h-[90vh]">
+    <div class="sm:w-2/5 p-6 space-y-4 rounded-2xl overflow-auto max-h-[90vh]">
 
       <!-- タイトル -->
-      <h1 class="py-6 p-4 text-2xl bg-white font-bold text-stone-800 rounded-2xl">
+      <h1 class="py-4 text-3xl font-normal text-stone-700 font-zenmaru
+           inline
+           bg-[linear-gradient(transparent_60%,_#7CFF6B_60%)]
+           bg-no-repeat
+           bg-[length:100%_0.75em]
+           bg-[position:0_1.2em]
+           [box-decoration-break:clone]
+           [-webkit-box-decoration-break:clone]">
         <%= @post.title %>
       </h1>
 
       <!-- メタ情報 -->
-      <div class="px-3 space-y-1">
+      <div class="px-1 space-y-1 text-lg text-stone-600 font-zenmaru">
         <% if @post.visited_at.present? %>
-          <div class="flex items-center text-sm text-gray-600">
-            <span class="w-16 shrink-0 text-gray-400">訪問日</span>
-            <span class="font-medium"><%= @post.visited_at %></span>
+          <div class="flex items-center">
+            <span class="w-16 shrink-0">訪問日</span>
+            <span><%= @post.visited_at %></span>
          </div>
         <% end %>
 
-        <div class="flex items-center text-sm text-gray-600">
-          <span class="w-16 shrink-0 text-gray-400">エリア</span>
+        <div class="flex items-center font-zenmaru">
+          <span class="shrink-0 text-lg me-2">場所　➡</span>
           <span class="font-medium">
             <%= country_name(@post.country) %>
             <% if @post.region.present? %>
@@ -79,23 +113,23 @@
       </div>
 
       <!-- 感想・メモ -->
-      <div class="pt-2 px-6 pb-10 text-lg bg-white text-gray-800
-                  leading-[2rem] rounded-2xl whitespace-pre-line shadow-sm border border-gray-100">
+      <div class="pt-2 px-1 pb-6 ml-4 text-xl text-stone-700
+                  leading-[2.2rem] whitespace-pre-line font-zenmaru">
         <%= @post.body %>
       </div>
 
       <!-- 知っておくと便利 -->
       <% if @post.warning.present? %>
-        <div class="mt-4 pt-5 px-6 pb-10 bg-sky-50 rounded-2xl relative overflow-hidden">
+        <div class="mt-10 pt-5 px-6 pb-10 bg-sky-50 rounded-2xl relative overflow-hidden">
           <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-sky-500"></div>
 
-          <h2 class="flex items-center font-bold text-sky-600 text-lg tracking-wider uppercase mb-2">
+          <h2 class="flex items-center font-bold text-sky-600 text-xl tracking-wider uppercase mb-2">
             <span class="mr-2">💡知っておくと便利</span> 
           </h2>
     
           <div class="mb-4 w-full border-t border-sky-200 border-dotted"></div>
     
-          <p class="whitespace-pre-line text-lg text-gray-700 leading-relaxed font-medium">
+          <p class="whitespace-pre-line text-xl text-gray-700 leading-relaxed font-medium font-zenmaru">
             <%= @post.warning %>
           </p>
         </div>

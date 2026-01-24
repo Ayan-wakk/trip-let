@@ -20,3 +20,15 @@
     font-family: "Noto Sans JP", ui-sans-serif, system-ui, sans-serif;
   }
 }
+
+@layer utilities {
+  .font-handwritten {
+    font-family: "Zen Kurenaido", cursive;
+  }
+}
+
+@layer utilities {
+  .font-zenmaru {
+    font-family: "Zen Maru Gothic", ui-sans-serif, system-ui, sans-serif;
+  }
+}

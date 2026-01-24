@@ -2,7 +2,10 @@ class Post < ApplicationRecord
   belongs_to :user
   has_many_attached :images
 
-  validates :title, :body, :country, presence: true
+  validates :title, presence: true, length: { maximum: 30 }
+  validates :body, presence: true, length: { maximum: 1000 }
+  validates :country, presence: true
+  
   validate :images_presence
   validate :images_count_within_limit
 

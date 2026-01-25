@@ -46,8 +46,19 @@
           class: "text-sm text-red-600 font-medium hover:underline" %>
     </div>
 
-    <div class="mt-10 border-t border-slate-200 pt-6">
-      <%= link_to user_google_oauth2_omniauth_authorize_path,
+    <div class="mt-10 border-t border-slate-200 pt-2">
+
+      <div class="mt-4 mb-2 text-sm text-gray-600">
+        <label class="flex items-start gap-2">
+          <span>
+            <%= link_to "利用規約", terms_path, class: "text-blue-600 hover:underline" %>
+              および
+            <%= link_to "プライバシーポリシー", privacy_path, class: "text-blue-600 hover:underline" %>
+              （以下、利用規約等）に同意します
+            </span>
+      </div>
+
+        <%= link_to user_google_oauth2_omniauth_authorize_path,
           data: { turbo: false, controller: "tap-feedback" },
           class: "w-full flex items-center justify-center gap-3 px-4 py-2
                   border-4 border-sky-400 rounded-md shadow-sm
@@ -59,7 +70,7 @@
           <path fill="#FBBC05" d="M9.84 28.99c-.48-1.45-.75-2.99-.75-4.49s.27-3.04.75-4.49l-6.34-4.92C1.59 18.3.5 21.03.5 24.5s1.09 6.2 3 9.41l6.34-4.92z"/>
           <path fill="#34A853" d="M24 47.5c6.48 0 11.92-2.14 15.89-5.77l-7.18-5.59c-2 1.34-4.57 2.13-8.71 2.13-6.64 0-12.34-3.74-14.16-9.23l-6.34 4.92C7.2 41.36 14.94 47.5 24 47.5z"/>
         </svg>
-        <span>Googleでログイン</span>
+        <span>利用規約等に同意し、Googleログイン</span>
       <% end %>
     </div>
 

@@ -2,7 +2,7 @@ ja:
   activerecord:
     attributes:
       user:
-        name: "名前"
+        name: "ニックネーム"
         email: "メールアドレス"
         password: "パスワード"
         password_confirmation: "パスワード（確認）"
@@ -11,7 +11,7 @@ ja:
     registrations:
       new:
         sign_up: 新規登録
-        signup: 登録
+        signup: 利用規約等に同意し、登録
     sessions:
       new:
         sign_in: "ログイン"

@@ -78,7 +78,7 @@
     <% end %>
 
     <!-- 右：テキスト -->
-    <div class="sm:w-2/5 p-3 sm:p-6 rounded-2xl sm:overflow-auto sm:max-h-[90vh]">
+    <div class="sm:w-2/5 p-3 sm:p-6 rounded-2xl">
 
       <!-- タイトル -->
       <h1 class="py-4 text-xl sm:text-3xl font-normal text-stone-700 font-zenmaru
@@ -112,28 +112,30 @@
         </div>
       </div>
 
-      <!-- 感想・メモ -->
-      <div class="py-1 px-1 text-base sm:text-xl text-stone-700
-                  leading-[2.2rem] whitespace-pre-line font-zenmaru">
-        <%= @post.body %>
-      </div>
-
-      <!-- 知っておくと便利 -->
-      <% if @post.warning.present? %>
-        <div class="ml-1 mt-2 pt-3 pb-3 px-3 bg-sky-50 rounded-2xl relative overflow-hidden">
-          <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-sky-500"></div>
-
-          <h2 class="flex items-center font-bold text-sky-600 text-base sm:text-xl tracking-wider uppercase mb-0">
-            <span class="p-2">💡知っておくと便利</span> 
-          </h2>
-    
-          <div class="w-full border-t border-sky-200 border-dotted"></div>
-    
-          <p class="whitespace-pre-line px-2 py-1 text-base sm:text-xl text-gray-700 leading-relaxed font-medium font-zenmaru">
-            <%= @post.warning %>
-          </p>
+      <div class="sm:overflow-auto sm:max-h-[90vh]">
+        <!-- 感想・メモ -->
+        <div class="py-1 px-1 text-base sm:text-xl text-stone-700
+                    leading-[2.2rem] whitespace-pre-line font-zenmaru">
+          <%= @post.body %>
         </div>
-      <% end %>
+
+        <!-- 知っておくと便利 -->
+        <% if @post.warning.present? %>
+          <div class="ml-1 mt-2 pt-3 pb-3 px-3 bg-sky-50 rounded-2xl relative overflow-hidden">
+            <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-sky-500"></div>
+
+            <h2 class="flex items-center font-bold text-sky-600 text-base sm:text-xl tracking-wider uppercase mb-0">
+              <span class="p-2">💡知っておくと便利</span> 
+            </h2>
+    
+            <div class="w-full border-t border-sky-200 border-dotted"></div>
+    
+            <p class="whitespace-pre-line px-2 py-1 text-base sm:text-xl text-gray-700 leading-relaxed font-medium font-zenmaru">
+              <%= @post.warning %>
+            </p>
+          </div>
+        <% end %>
+      </div>
 
       <!-- 投稿者情報 いずれ追加する -->
       <div class="flex items-center mt-6 space-x-3">

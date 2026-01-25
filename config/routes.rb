@@ -8,6 +8,10 @@ Rails.application.routes.draw do
   get "/terms", to: "pages#terms"
   get "/privacy", to: "pages#privacy"
   get "/operator", to: "pages#operator"
-  resources :posts, only: %i[index new create show edit destroy update]
+
+  resources :posts, only: %i[index new create show edit destroy update] do
+    resources :like, only: %i[create destroy]
+  end
+
   get "up" => "rails/health#show", as: :rails_health_check
 end

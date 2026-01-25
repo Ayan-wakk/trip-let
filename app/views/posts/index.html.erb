@@ -2,7 +2,7 @@
 
   <%= render 'search_form' %>
 
-  <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-1 sm:gap-4 lg:gap-6">
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-1 sm:gap-4 lg:gap-6">
     <% @posts.each do |post| %>
 
       <div class="block bg-white p-3 pb-6 rounded-sm border border-gray-200
@@ -48,7 +48,7 @@
 
             <!-- テキスト -->
             <div class="min-w-0">
-              <p class="font-semibold text-xs sm:text-base line-clamp-2">
+              <p class="font-semibold text-sm sm:text-base line-clamp-2">
                 <%= post.title %>
               </p>
             </div>

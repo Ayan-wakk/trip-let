@@ -36,6 +36,9 @@ Rails.application.configure do
     enable_starttls_auto: true
   }
 
+  # --- ジョブを即座に実行 ---
+  config.active_job.queue_adapter = :inline
+
   # --- その他 ---
   config.i18n.fallbacks = true
   config.active_record.dump_schema_after_migration = false

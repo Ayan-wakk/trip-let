@@ -49,7 +49,7 @@ gem "omniauth-twitter2"
 
 gem "importmap-rails"
 
-gem "aws-sdk-s3", "~> 1.100"
+gem "aws-sdk-s3", "~> 1.211"
 
 gem "ransack"
 

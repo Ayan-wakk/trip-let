@@ -1,7 +1,29 @@
-<p>こんにちは、<%= @email %> さん</p>
+<p><%= @email %> 様</p>
 
 <% if @resource.try(:unconfirmed_email?) %>
-  <p>あなたのメールアドレスは <%= @resource.unconfirmed_email %> に変更中です。変更を完了するには、送信された確認メールのリンクをクリックしてください。</p>
+  <p>
+    Trip-letにご登録のメールアドレスを
+    <strong><%= @resource.unconfirmed_email %></strong>
+    へ変更するお手続きを受け付けました。
+  </p>
+
+  <p>
+    変更を完了するには、新しいメールアドレス宛に送信された
+    確認メール内のリンクをクリックしてください。
+  </p>
 <% else %>
-  <p>あなたのメールアドレスは <%= @resource.email %> に変更されました。</p>
+  <p>
+    Trip-letにご登録のメールアドレスが
+    <strong><%= @resource.email %></strong>
+    に変更されました。
+  </p>
 <% end %>
+
+<p>
+  ※本メールにお心当たりがない場合は、恐れ入りますが破棄してください。
+</p>
+
+<p>
+  ───────────────<br>
+  Trip-let 運営
+</p>

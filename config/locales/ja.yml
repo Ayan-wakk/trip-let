@@ -8,6 +8,8 @@ ja:
         body: 感想・メモ
         country: 国
         images: 画像
+      user:
+        name: ニックネーム
     errors:
       messages:
         blank: "を入力してください"

@@ -27,7 +27,7 @@
     <!-- タイトル以降 -->
     <div class="field mb-3">
       <div>
-        <%= f.label :title, "タイトル（必須） 30字まで", class: "block text-xl font-medium text-gray-700" %>
+        <%= f.label :title, "タイトル（必須）  30字以内", class: "block text-xl font-medium text-gray-700" %>
         <%= f.text_field :title, autofocus: true, maxlength: 30, placeholder: "場所・レストラン・カフェ・ホテルなど",
             class: "mt-2 w-full rounded-md border-2 border-gray-300 bg-white px-4 py-2 text-lg
                     focus:border-sky-500 focus:ring-2 focus:ring-sky-500" %>
@@ -36,7 +36,7 @@
 
     <div class="field mb-3">
       <div>
-        <%= f.label :body, "感想・メモ（必須）", class: "block text-xl font-medium text-gray-700" %>
+        <%= f.label :body, "感想・メモ（必須）  1000字以内", class: "block text-xl font-medium text-gray-700" %>
         <%= f.text_area :body, maxlength: 1000, 
             class: "mt-2 w-full rounded-md border-2 border-gray-300 bg-white px-4 py-2 text-lg
                     focus:border-sky-500 focus:ring-2 focus:ring-sky-500" %>
@@ -71,7 +71,7 @@
     </div>
 
     <div class="field mb-4">
-      <%= f.label :warning, "知っておくと便利", class: "block text-xl font-medium text-gray-700" %>
+      <%= f.label :warning, "知っておくと便利   500字以内", class: "block text-xl font-medium text-gray-700" %>
         <%= f.text_area :warning, placeholder: "現金あった方がいい、予約した方がお得です",
             class: "mt-2 w-full rounded-md border-2 border-gray-300 bg-white px-4 py-2 text-lg
                     focus:border-sky-500 focus:ring-2 focus:ring-sky-500" %>

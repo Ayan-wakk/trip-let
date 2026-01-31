@@ -8,8 +8,10 @@
          %>
       </h2>
       <ul>
-        <% resource.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
+        <% [:name, :email, :password].each do |attr| %>
+          <% resource.errors.full_messages_for(attr).each do |message| %>
+            <li><%= message %></li>
+          <% end %>
         <% end %>
       </ul>
     </div>

@@ -24,9 +24,9 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = true
 
   # --- メールのリンク先URLと画像のホスト設定 ---
-  config.action_mailer.default_url_options = { host: 'trip-let.onrender.com', protocol: 'https' }
-  config.action_mailer.asset_host = 'https://trip-let.onrender.com'
- 
+  config.action_mailer.default_url_options = { host: "trip-let.onrender.com", protocol: "https" }
+  config.action_mailer.asset_host = "https://trip-let.onrender.com"
+
   config.action_mailer.smtp_settings = {
     address: "smtp.gmail.com",
     port: 587,

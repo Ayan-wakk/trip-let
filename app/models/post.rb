@@ -6,6 +6,8 @@ class Post < ApplicationRecord
   validates :title, presence: true, length: { maximum: 30 }
   validates :body, presence: true, length: { maximum: 1000 }
   validates :country, presence: true
+  validates :region, length: { maximum: 50 }
+  validates :warning, length: { maximum: 500 }
 
   validate :images_presence
   validate :images_count_within_limit

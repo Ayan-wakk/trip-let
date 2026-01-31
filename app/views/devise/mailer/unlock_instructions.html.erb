@@ -1,7 +1,27 @@
-<p>Hello <%= @resource.email %>!</p>
+<p><%= @resource.email %> 様</p>
 
-<p>Your account has been locked due to an excessive number of unsuccessful sign in attempts.</p>
+<p>
+  Trip-letをご利用いただきありがとうございます。
+</p>
 
-<p>Click the link below to unlock your account:</p>
+<p>
+  複数回のログイン失敗が確認されたため、
+  セキュリティ保護の目的でアカウントを一時的にロックしました。
+</p>
 
-<p><%= link_to 'Unlock my account', unlock_url(@resource, unlock_token: @token) %></p>
+<p>
+  下記のリンクをクリックすると、アカウントのロックを解除できます。
+</p>
+
+<p>
+  <%= link_to 'アカウントのロックを解除する', unlock_url(@resource, unlock_token: @token) %>
+</p>
+
+<p>
+  ※本メールにお心当たりがない場合は、恐れ入りますが本メールを破棄してください。
+</p>
+
+<p>
+  ───────────────<br>
+  Trip-let 運営
+</p>

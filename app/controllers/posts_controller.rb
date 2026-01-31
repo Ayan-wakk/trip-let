@@ -1,10 +1,13 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, except: [ :index ]
+  before_action :authenticate_user!, only: [:show, :new, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: :index, if: -> { params[:scope] == "my" }
   before_action :set_post, only: [ :show, :edit, :update, :destroy ]
 
   def index
+    @is_my_page = params[:scope] == "my"
+
     base_posts =
-      if params[:scope] == "my"
+      if @is_my_page
         current_user.posts
       else
         Post.where(is_public: true)

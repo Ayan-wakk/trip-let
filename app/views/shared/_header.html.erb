@@ -7,47 +7,52 @@
     </div>
 
     <% if user_signed_in? %>
-      <div class="relative">
-        <!-- ハンバーガー -->
-        <button data-action="click->menu#toggle"
-                class="p-2 rounded-md hover:bg-blue-300 text-white"
-                aria-label="メニュー">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-          </svg>
-        </button>
+      <div class="flex items-center gap-4">
+        <span class="text-white">
+          <%= current_user.name %>
+          さん
+        </span>
+        <div class="relative">
+          <!-- ハンバーガー -->
+          <button data-action="click->menu#toggle"
+                  class="p-2 rounded-md hover:bg-blue-300 text-white"
+                  aria-label="メニュー">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          </button>
 
-        <!-- メニュー -->
-        <div data-menu-target="menu"
-             class="hidden absolute right-0 top-full mt-2 w-64
-                    rounded-xl bg-white shadow-lg p-4 space-y-2 z-[80]">
+          <!-- メニュー -->
+          <div data-menu-target="menu"
+               class="hidden absolute right-0 top-full mt-2 w-64
+                      rounded-xl bg-white shadow-lg p-4 space-y-2 z-[80]">
 
-          <!-- マイページ -->
-          <%= link_to "マイプロフィール", "#", class: "menu-link  block hover:bg-gray-100 hover:text-blue-600 rounded" %>
+            <!-- マイページ -->
+            <%= link_to "マイプロフィール", "#", class: "menu-link  block hover:bg-gray-100 hover:text-blue-600 rounded" %>
 
-          <!-- アカウント -->
-          <%= link_to "アカウント", edit_user_registration_path, class: "menu-link  block hover:bg-gray-100 hover:text-blue-600 rounded" %>
+            <!-- アカウント -->
+            <%= link_to "アカウント", edit_user_registration_path, class: "menu-link  block hover:bg-gray-100 hover:text-blue-600 rounded" %>
 
-          <hr>
+            <hr>
 
-          <!-- 情報系 -->
-          <%= link_to "利用規約", terms_path, class: "menu-link  block hover:bg-gray-100 hover:text-blue-600 rounded" %>
-          <%= link_to "プライバシーポリシー", privacy_path, class: "menu-link  block hover:bg-gray-100 hover:text-blue-600 rounded" %>
-          <%= link_to "お問い合わせ", operator_path, class: "menu-link  block hover:bg-gray-100 hover:text-blue-600 rounded" %>
+            <!-- 情報系 -->
+            <%= link_to "利用規約", terms_path, class: "menu-link  block hover:bg-gray-100 hover:text-blue-600 rounded" %>
+            <%= link_to "プライバシーポリシー", privacy_path, class: "menu-link  block hover:bg-gray-100 hover:text-blue-600 rounded" %>
+            <%= link_to "お問い合わせ", operator_path, class: "menu-link  block hover:bg-gray-100 hover:text-blue-600 rounded" %>
 
-          <hr>
+            <hr>
 
-          <!-- ログアウト -->
-          <%= button_to "ログアウト",
-                        destroy_user_session_path,
-                        method: :delete,
-                        data: { turbo: false },
-                       class: "menu-link  block hover:bg-gray-100 hover:text-blue-600 rounded" %>
+            <!-- ログアウト -->
+            <%= button_to "ログアウト",
+                          destroy_user_session_path,
+                          method: :delete,
+                          data: { turbo: false },
+                         class: "menu-link  block hover:bg-gray-100 hover:text-blue-600 rounded" %>
 
+          </div>
+          <!-- ★ メニューここまで -->
         </div>
-        <!-- ★ メニューここまで -->
       </div>
     <% end %>
-
   </div>
 </header>

@@ -17,7 +17,8 @@
             <!-- 画像 -->
             <% if post.images.attached? %>
               <div class="relative">
-                <%= image_tag post.images.first, class: "h-72 sm:h-64 w-full object-cover" %>
+                <% img = (post.images.first.variant(resize_to_fill: [800, 600], format: :webp) rescue post.images.first) %>
+                <%= image_tag img, class: "h-72 sm:h-64 w-full object-cover", loading: "lazy", decoding: "async" %>
 
                 <!-- 国・地域（画像右下） -->
                 <div class="absolute bottom-2 right-2

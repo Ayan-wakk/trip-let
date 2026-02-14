@@ -13,8 +13,8 @@
 
         <!-- メイン画像  -->
         <div class="relative mx-auto w-full sm:w-fit sm:rotate-[-2deg]">
-          <%= image_tag @post.images.first.variant(
-                resize_to_limit: [800, 800], format: :webp).processed,
+          <%= image_tag (@post.images.first.variant(
+                resize_to_limit: [800, 800], format: :webp) rescue @post.images.first),
                 id: "main-image",
                 loading: "eager",
                 decoding: "async",
@@ -65,12 +65,12 @@
         <!-- サムネイル -->
         <div class="sm:mt-12 flex gap-0 sm:gap-2 overflow-x-auto">
           <% @post.images.each_with_index do |image, index| %>
-            <% main_variant = image.variant(resize_to_limit: [800, 800], format: :webp).processed %>
+            <% main_variant = image.variant(resize_to_limit: [800, 800], format: :webp) rescue image %>
 
-            <%= image_tag image.variant(resize_to_fill:[200, 200], format: :webp).processed,
+            <%= image_tag image.variant(resize_to_fill:[200, 200], format: :webp) rescue image),
               class: "thumbnail h-24 w-24 object-cover rounded-lg shrink-0 border
                       cursor-pointer #{index == 0 ? 'ring-2 ring-black' : ''}",
-              data: { image_url: url_for(main_variant) } %>
+              data: { image_url: rails_blob_url(main_variant, only_path: true) } %>
           <% end %>
         </div>
 

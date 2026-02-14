@@ -15,8 +15,10 @@
           <%= link_to post_path(post) do %>
 
             <!-- 画像 -->
-            <%= image_tag post.images.first, class: "h-72 sm:h-64 w-full object-cover",
-                loading: "lazy", decoding: "async" %>
+            <% if post.images.attached? %>
+              <div class="relative">
+                <%= image_tag post.images.first, class: "h-72 sm:h-64 w-full object-cover",
+                    loading: "lazy", decoding: "async" %>
 
                 <!-- 国・地域（画像右下） -->
                 <div class="absolute bottom-2 right-2

@@ -65,9 +65,9 @@
         <!-- サムネイル -->
         <div class="sm:mt-12 flex gap-0 sm:gap-2 overflow-x-auto">
           <% @post.images.each_with_index do |image, index| %>
-            <% main_variant = image.variant(resize_to_limit: [800, 800], format: :webp) rescue image %>
+            <% main_variant = (image.variant(resize_to_limit: [800, 800], format: :webp) rescue image) %>
 
-            <%= image_tag image.variant(resize_to_fill:[200, 200], format: :webp) rescue image),
+            <%= image_tag (image.variant(resize_to_fill:[200, 200], format: :webp) rescue image),
               class: "thumbnail h-24 w-24 object-cover rounded-lg shrink-0 border
                       cursor-pointer #{index == 0 ? 'ring-2 ring-black' : ''}",
               data: { image_url: rails_blob_url(main_variant, only_path: true) } %>

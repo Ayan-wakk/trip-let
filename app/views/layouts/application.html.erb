@@ -14,7 +14,7 @@
 
     <!-- Tailwind CSS -->
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
 
   <body class="bg-blue-50 text-gray-900 min-h-screen flex flex-col">

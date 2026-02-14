@@ -5,3 +5,5 @@ const application = Application.start()
 export { application }
 
 import "./controllers"
+
+import "@rails/activestorage"

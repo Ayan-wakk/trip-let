@@ -6,7 +6,7 @@
       <div>
         <%= f.label :images, "画像（必須 ※5枚まで）", class: "block font-medium text-gray-700 py-2"  %>
         <%= f.file_field :images, multiple: true, accept: "image/*", id: "image-input",
-                          class: "hidden, direct_upload: true %>
+                          class: "hidden", direct_upload: true %>
         <label for="image-input" class="border-2 border-gray-800 bg-gray-300 text-base rounded-md px-4 py-2 cursor-pointer">
           ファイルを選択
         </label>

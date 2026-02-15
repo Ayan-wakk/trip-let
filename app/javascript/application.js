@@ -6,4 +6,5 @@ export { application }
 
 import "./controllers"
 
-import "@rails/activestorage"
+import * as ActiveStorage from "@rails/activestorage"
+ActiveStorage.start()

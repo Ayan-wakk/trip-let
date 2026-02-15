@@ -18,12 +18,15 @@ class PostsController < ApplicationController
 
     @posts = @q
                .result
+               .includes(:user, images_attachments: :blob)
                .order(created_at: :desc)
                .page(params[:page])
                .per(20)
   end
 
   def show
+    @post = Post.includes(images_attachments: :blob).find(params[:id])
+
     unless @post.is_public? || @post.user == current_user # 投稿が公開されているまたは投稿者本人であるこのどちらでもない場合
       redirect_to posts_path, alert: "この投稿は非公開です"
     end

@@ -17,8 +17,17 @@
             <!-- 画像 -->
             <% if post.images.attached? %>
               <div class="relative">
-                <%= image_tag post.images.first, class: "h-72 sm:h-64 w-full object-cover",
-                    loading: "lazy", decoding: "async" %>
+              <% first_image = post.images.first %>
+              <% if first_image.variable? %>
+                <%= image_tag first_image.variant(resize_to_fill: [400, 300]).processed,
+                    class: "h-72 sm:h-64 w-full object-cover",
+                    loading: "lazy",
+                    decoding: "async" %>
+              <% else %>
+                <%= image_tag first_image,
+                    class: "h-72 sm:h-64 w-full object-cover",
+                    loading: "lazy" %>
+              <% end %>
 
                 <!-- 国・地域（画像右下） -->
                 <div class="absolute bottom-2 right-2

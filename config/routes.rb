@@ -13,5 +13,9 @@ Rails.application.routes.draw do
     resources :like, only: %i[create destroy]
   end
 
+  namespace :users do
+    resource :profile, only: [:edit, :update]
+  end
+
   get "up" => "rails/health#show", as: :rails_health_check
 end

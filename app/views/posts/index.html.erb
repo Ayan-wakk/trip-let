@@ -1,6 +1,6 @@
 <div class=" px-0 sm:px-4 py-0 sm:py-6">
 
-  <%= render "posts/my_profile" if @is_my_page %>
+  <%= render "users/profiles/profile" if @is_my_page %>
 
   <%= render 'search_form' %>
 
@@ -47,7 +47,7 @@
             <% end %>
 
             <!-- 下部 -->
-            <div class="p-2 sm:p-4 flex flex-col gap-2 sm:gap-3">
+            <div class="p-2 flex flex-col gap-2 sm:gap-3">
 
               <!-- テキスト -->
               <div class="min-w-0">
@@ -57,24 +57,31 @@
               </div>
 
               <div class="flex flex-row items-center gap-2">
-                <!-- 仮アイコン -->
-                <div class="h-8 w-8 sm:h-10 sm:w-10
-                            rounded-full flex
-                            items-center justify-center
-                            text-gray-600 text-lg shrink-0">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-10">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                  </svg>
-                </div>
+                <% if post.user.avatar.attached? %>
+                  <%= image_tag post.user.avatar,
+                      class: "w-10 h-10 rounded-full object-cover" %>
+                <% else %>
+                  <!-- 仮アバター -->
+                  <div class="h-8 w-8 sm:h-10 sm:w-10
+                              rounded-full flex
+                              items-center justify-center
+                              text-gray-600 text-lg shrink-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-10">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                    </svg>
+                  </div>
+                <% end %>
+
                 <span class="text-sm sm:text-base font-medium text-gray-700">
                   <%= post.user.name %>
                 </span>
+
               </div> 
             </div>
 
           <% end %>
 
-          <div class="flex items-center justify-end px-2 sm:px-4 pb-3">
+          <div class="flex items-center justify-end px-2 sm:px-4">
             <% if user_signed_in? && current_user == post.user %>
 
               <% unless post.is_public? %>

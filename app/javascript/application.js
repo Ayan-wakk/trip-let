@@ -7,3 +7,5 @@ export { application }
 import "./controllers"
 
 import "@rails/activestorage"
+
+import "./avatar_preview"

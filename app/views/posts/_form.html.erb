@@ -13,7 +13,6 @@
       </div>
     </div>
 
-    <!-- 画像アップロード -->
     <%  if post.persisted? %>
       <div id="image-preview" class="flex gap-3 flex-wrap mb-4 py-4"
         data-existing='<%= post.images.map { |i| {id: i.id, url: url_for(i)} }.to_json %>'>

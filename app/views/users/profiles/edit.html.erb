@@ -1,0 +1,52 @@
+<div class="max-w-2xl mx-auto font-mono text-lg font-medium text-gray-800 px-4 py-4">
+
+  <p class="font-mono text-3xl font-medium text-gray-800 py-4">
+    プロフィールの編集
+  </p>
+
+<%= form_with model: @user, url: users_profile_path, method: :patch, local: true, html: { multipart: true } do |f| %>
+
+  <!-- アバター -->
+  <div class="mb-4">
+
+    <!-- 画像アップロード -->
+    <div class="field mb-3">
+      <div>
+        <%= f.label :avatar, "プロフィール画像", class: "block font-medium text-gray-700 py-2"  %>
+        <%= f.file_field :avatar, accept: "image/*", id: "avatar-input",
+                          class: "hidden", direct_upload: true %>
+        <label for="avatar-input" class="border-2 border-gray-800 bg-gray-300 text-base rounded-md px-4 py-2 cursor-pointer">
+          ファイルを選択
+        </label>
+
+        <!-- プレビュー -->
+        <div id="avatar-preview" class="mt-4">
+          <% if @user.avatar.attached? %>
+            <%= image_tag @user.avatar, class: "w-32 h-32 rounded-full object-cover" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 名前 -->
+  <div class="mb-4">
+    <%= f.label :name, "ニックネーム" %><br>
+    <%= f.text_field :name, 
+        class: "mt-2 w-full rounded-md border-2 border-gray-300 bg-white px-4 py-2 text-lg
+                focus:border-sky-500 focus:ring-2 focus:ring-sky-500" %>
+  </div>
+
+  <!-- 自己紹介 -->
+  <div class="mb-4">
+    <%= f.label :introduction, "自己紹介（200文字以内）" %><br>
+    <%= f.text_area :introduction, maxlength: 200,
+        class: "mt-2 w-full rounded-md border-2 border-gray-300 bg-white px-4 py-2 text-lg
+                focus:border-sky-500 focus:ring-2 focus:ring-sky-500" %>
+
+  </div>
+
+  <%= f.submit "更新", class: "bg-blue-500 text-white px-4 py-2 rounded" %>
+
+<% end %>
+</div>

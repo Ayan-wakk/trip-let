@@ -5,14 +5,7 @@ class PostsController < ApplicationController
   before_action :set_my_post, only: [ :edit, :update, :destroy ]
 
   def index
-    @is_my_page = params[:scope] == "my"
-
-    base_posts =
-      if @is_my_page
-        current_user.posts
-      else
-        Post.where(is_public: true)
-      end
+    base_posts = Post.where(is_public: true)
 
     @q = base_posts.ransack(params[:q])
 

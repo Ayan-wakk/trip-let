@@ -78,7 +78,7 @@
           <span class="text-xs mt-1 font-bold">いいね</span>
       <% end %>
 
-      <%= link_to posts_path(scope: "my"),
+      <%= link_to user_path(current_user),
           class: "
             flex flex-col items-center
             px-4 sm:px-5

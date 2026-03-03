@@ -1,44 +1,58 @@
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-1 sm:gap-4 lg:gap-6">
-    <% if posts.any? %>
-      <% posts.each do |post| %>
+ <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-1 sm:gap-4 lg:gap-6">
+  <% if posts.any? %>
+    <% posts.each do |post| %>
 
-        <div class="block bg-white p-3 pb-6 rounded-sm border border-gray-200
-                    shadow-md hover:shadow-xl transition overflow-hidden
-                    hover:shadow-2xl hover:scale-105 transition transform duration-300">
+      <div class="block bg-white p-3 pb-6 rounded-sm border border-gray-200
+                  shadow-md hover:shadow-xl transition overflow-hidden
+                  hover:shadow-2xl hover:scale-105 transition transform duration-300">
+
+        <!-- 画像エリア -->
+        <div class="relative">
+
+          <!-- いいね -->
+          <div class="absolute bottom-2 left-2 z-20">
+            <%= render "likes/like", post: post, show_count: false %>
+          </div>
 
           <%= link_to post_path(post) do %>
 
-            <!-- 画像 -->
             <% if post.images.attached? %>
-              <div class="relative">
+
               <% first_image = post.images.first %>
+
               <% if first_image.variable? %>
                 <%= image_tag first_image.variant(resize_to_fill: [400, 300]).processed,
-                    class: "h-72 sm:h-64 w-full object-cover",
-                    loading: "lazy",
-                    decoding: "async" %>
+                  class: "h-72 sm:h-64 w-full object-cover",
+                  loading: "lazy",
+                  decoding: "async" %>
               <% else %>
                 <%= image_tag first_image,
                     class: "h-72 sm:h-64 w-full object-cover",
                     loading: "lazy" %>
               <% end %>
 
-                <!-- 国・地域（画像右下） -->
-                <div class="absolute bottom-2 right-2
-                            bg-white/90 text-gray-800
-                            text-xs px-2 py-1 rounded">
-                  <%= country_name(post.country) %>
-                  <% if post.region.present? %>
-                    / <%= post.region %>
-                  <% end %>
-                </div>
-              </div>
             <% else %>
+
               <div class="h-72 sm:h-64 w-full bg-gray-200
                           flex items-center justify-center text-gray-500">
                 No Image
               </div>
+
             <% end %>
+
+          <% end %>
+
+          <!-- 国・地域（画像右下） -->
+          <div class="absolute bottom-2 right-2
+                      bg-white/90 text-gray-800
+                      text-xs px-2 py-1 rounded">
+            <%= country_name(post.country) %>
+            <% if post.region.present? %>
+              / <%= post.region %>
+            <% end %>
+          </div>
+
+        </div>
 
             <!-- 下部 -->
             <div class="p-2 flex flex-col gap-2 sm:gap-3">
@@ -73,8 +87,6 @@
                 </div> 
               <% end %>
             </div>
-
-          <% end %>
 
           <div class="flex items-center justify-end px-2 sm:px-4">
             <% if user_signed_in? && current_user == post.user %>

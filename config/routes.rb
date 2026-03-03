@@ -10,9 +10,9 @@ Rails.application.routes.draw do
   get "/operator", to: "pages#operator"
 
   resources :users, only: [:show]
-  
+
   resources :posts, only: %i[index new create show edit destroy update] do
-    resources :like, only: %i[create destroy]
+    resource :like, only: %i[create destroy]
   end
 
   namespace :users do

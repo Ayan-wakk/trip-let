@@ -17,7 +17,7 @@ class User < ApplicationRecord
 
   has_many :posts, dependent: :destroy
   has_many :likes, dependent: :destroy
-  has_many :likes_posts, through: :likes, source: :post
+  has_many :liked_posts, through: :likes, source: :post
 
 def self.from_omniauth(auth)
     # ユーザーを探すか、新しく作る準備をする

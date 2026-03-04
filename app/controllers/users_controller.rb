@@ -14,4 +14,11 @@ class UsersController < ApplicationController
              .page(params[:page])
              .per(20)
   end
+
+  def likes
+    @user = User.find(params[:id])
+    @liked_posts = @user.liked_posts
+                  .page(params[:page])
+                  .per(20)
+  end
 end

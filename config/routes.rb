@@ -9,10 +9,14 @@ Rails.application.routes.draw do
   get "/privacy", to: "pages#privacy"
   get "/operator", to: "pages#operator"
 
-  resources :users, only: [:show]
-
   resources :posts, only: %i[index new create show edit destroy update] do
     resource :like, only: %i[create destroy]
+  end
+
+  resources :users, only: [:show] do
+    member do
+      get :likes
+    end
   end
 
   namespace :users do

@@ -10,9 +10,11 @@
         <div class="relative">
 
           <!-- いいね -->
-          <div class="absolute bottom-2 left-2">
-            <%= render "likes/like", post: post, show_count: false %>
-          </div>
+          <% if current_user %>
+            <div class="absolute bottom-2 left-2">
+              <%= render "likes/like", post: post, show_count: false %>
+            </div>
+          <% end %>
 
           <%= link_to post_path(post) do %>
 

@@ -102,9 +102,12 @@
         <%= @post.title %>
       </h1>
 
-      <div class="my-2">
-        <%= render "likes/like", post: @post, show_count: true %>
-      </div>
+      <!-- いいね -->
+      <% if current_user %>
+        <div class="my-2">
+          <%= render "likes/like", post: @post, show_count: true %>
+        </div>
+      <% end %>
 
       <!-- メタ情報 -->
       <div class="px-1 text-base sm:text-lg text-stone-600 font-zenmaru">

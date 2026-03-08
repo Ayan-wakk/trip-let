@@ -102,22 +102,38 @@
         <%= @post.title %>
       </h1>
 
-      <!-- いいね -->
-      <% if current_user %>
-        <div class="my-2">
-          <%= render "likes/like", post: @post, show_count: true %>
-        </div>
-      <% end %>
+      <!-- いいね + Xシェア -->
+      <div class="flex items-center gap-6 mt-4">
+        <% if current_user %>
+          <div class="flex items-center gap-6">
+            <%= render "likes/like", post: @post, show_count: true %>
+          </div>
+        <% end %>
+
+        <%= link_to "https://twitter.com/intent/tweet?url=#{request.original_url}&text=#{ERB::Util.url_encode("#{@post.user.name}さんの旅の記録｜#{@post.title}｜Trip-let")}&hashtags=旅行,旅の記録,旅行好きな人と繋がりたい,旅好き,風景写真",
+                    target: "_blank",
+                    rel: "noopener",
+                    class: "inline-flex items-center gap-2 px-3 py-1.5 text-sm
+                            bg-black text-white rounded-lg hover:bg-gray-800 transition" do %>
+
+          <svg aria-label="X logo"
+               viewBox="0 0 300 271"
+               class="w-4 h-4 fill-current">
+            <path d="m236 0h46l-101 115 118 156h-92.6l-72.5-94.8-83 94.8h-46l107-123-113-148h94.9l65.5 86.6zm-16.1 244h25.5l-165-218h-27.4z"/>
+          </svg>
+
+          <span>Xでシェア</span>
+
+        <% end %>
+      </div>
 
       <!-- メタ情報 -->
       <div class="px-1 text-base sm:text-lg text-stone-600 font-zenmaru">
         <div class="flex items-center gap-6">
           <% if @post.visited_at.present? %>
             <div class="flex items-center gap-6">
-              <div class="flex items-center gap-2">
-                <span class="shrink-0">訪問日</span>
-                <span><%= @post.visited_at %></span>
-              </div>
+              <span class="shrink-0">訪問日</span>
+              <span><%= @post.visited_at %></span>
             </div>
           <% end %>
 
@@ -154,7 +170,7 @@
 
         <!-- 知っておくと便利 -->
         <% if @post.warning.present? %>
-          <div class="ml-1 mt-2 pt-3 pb-3 px-3 bg-sky-50 rounded-2xl relative overflow-hidden">
+          <div class="ml-1 mt-3 pt-3 pb-3 px-3 bg-sky-50 rounded-2xl relative overflow-hidden">
             <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-sky-500"></div>
 
             <h2 class="flex items-center font-bold text-sky-600 text-base sm:text-xl tracking-wider uppercase mb-0">

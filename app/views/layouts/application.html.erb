@@ -7,6 +7,22 @@
     <%= csrf_meta_tags %> 
     <%= csp_meta_tag %> 
 
+    <!-- X share -->
+    <% if controller_name == "posts" && action_name == "show" && @post.present? %>
+
+    <meta property="og:title" content="<%= @post.title %>">
+    <meta property="og:description" content="<%= truncate(@post.body, length: 100) %>">
+    <meta property="og:url" content="<%= request.original_url %>">
+
+    <% if @post.images.attached? %>
+    <meta property="og:image" content="<%= post_og_image(@post) %>">
+    <meta name="twitter:image" content="<%= post_og_image(@post) %>">
+    <% end %>
+
+    <meta name="twitter:card" content="summary_large_image">
+
+    <% end %>
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

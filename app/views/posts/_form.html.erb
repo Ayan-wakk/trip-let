@@ -47,11 +47,12 @@
         <div>
           <%= f.label :country, "国（必須）", class: "block text-xl font-medium text-gray-700" %>
           <%= f.select :country, country_options, { prompt: "国を選択" },
+              id: "country-select",
               class: "mt-1 w-full h-12 rounded-md border-2 border-gray-300 bg-white px-4 py-2 text-lg
                       focus:border-sky-500 focus:ring-2 focus:ring-sky-500" %>
         </div>
 
-        <div>
+        <div id="prefecture-field">
           <%= f.label :prefecture, "都道府県", class: "block text-xl font-medium text-gray-700" %>
           <%= f.select :prefecture, prefecture_options, { prompt: "都道府県を選択" },
               class: "mt-1 w-full h-12 rounded-md border-2 border-gray-300 bg-white px-4 py-2 text-lg

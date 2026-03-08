@@ -77,6 +77,8 @@ class PostsController < ApplicationController
   def post_params
     params.require(:post).permit(
       :title, :body, :country, :region,
-      :visited_at, :warning, :is_public, images: [])
+      :visited_at, :warning, :is_public, 
+      :duration, :url, :prefecture,
+      images: [])
   end
 end

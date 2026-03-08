@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_01_25_060556) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_05_135911) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -63,11 +63,15 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_25_060556) do
   create_table "posts", force: :cascade do |t|
     t.text "body"
     t.string "country"
+    t.integer "cover_index"
     t.datetime "created_at", null: false
+    t.integer "duration"
     t.boolean "is_public", default: true, null: false
+    t.string "prefecture"
     t.string "region"
     t.string "title"
     t.datetime "updated_at", null: false
+    t.string "url"
     t.bigint "user_id", null: false
     t.date "visited_at"
     t.text "warning"

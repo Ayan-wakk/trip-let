@@ -1,4 +1,4 @@
-<div class="w-screen sm:max-w-7xl mx-auto px-0 sm:px-6 px-0 sm:py-12 mt-6 rounded-3xl border border-gray-200 shadow-inner"
+<div class="w-screen sm:max-w-7xl mx-auto px-0 sm:px-6 sm:py-12 mt-6 rounded-3xl border border-gray-200 shadow-inner"
      style="background-color: #ffffff;
             background-image:
               linear-gradient(rgba(120, 110, 100, 0.15) 1px, transparent 1px),
@@ -108,17 +108,33 @@
 
       <!-- メタ情報 -->
       <div class="px-1 text-base sm:text-lg text-stone-600 font-zenmaru">
-        <% if @post.visited_at.present? %>
-          <div class="flex items-center">
-            <span class="w-16 shrink-0">訪問日</span>
-            <span><%= @post.visited_at %></span>
-         </div>
-        <% end %>
+        <div class="flex items-center gap-6">
+          <% if @post.visited_at.present? %>
+            <div class="flex items-center gap-6">
+              <div class="flex items-center gap-2">
+                <span class="shrink-0">訪問日</span>
+                <span><%= @post.visited_at %></span>
+              </div>
+            </div>
+          <% end %>
+
+          <% if @post.duration.present? %>
+            <div class="flex items-center gap-6">
+              <span class="shrink-0">所要時間</span>
+              <span><%= duration_label(@post.duration) %></span>
+            </div>
+          <% end %>
+        </div>        
 
         <div class="flex items-center font-zenmaru">
           <span class="shrink-0 text-base sm:text-lg me-2">場所　➡</span>
           <span class="font-medium">
             <%= country_name(@post.country) %>
+
+            <% if @post.country == "JP" && @post.prefecture.present? %>
+              / <%= @post.prefecture %>
+            <% end %>
+            
             <% if @post.region.present? %>
               / <%= @post.region %>
             <% end %>
@@ -151,9 +167,48 @@
         <% end %>
       </div>
 
+      <!-- URL -->
+      <% if @post.url.present? %>
+        <div class="mt-6">
+          <%= link_to @post.url,
+              target: "_blank",
+              rel: "noopener",
+              class: "flex items-center gap-4 p-4 rounded-2xl
+                      bg-white border border-gray-200
+                      shadow-sm hover:shadow-md
+                      hover:bg-gray-50 transition" do %>
+
+            <!-- アイコン -->
+            <div class="text-sky-500 shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg"
+                   fill="none"
+                   viewBox="0 0 24 24"
+                   stroke-width="1.5"
+                   stroke="currentColor"
+                   class="w-6 h-6">
+                <path stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" />
+              </svg>
+            </div>
+
+            <!-- テキスト -->
+            <div class="flex flex-col">
+              <span class="text-sm text-gray-500">
+                関連サイト
+              </span>
+
+              <span class="text-sky-600 underline break-all">
+                <%= @post.url %>
+              </span>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+
       <!-- 投稿者情報 -->
       <%= link_to user_path(@post.user) do %>
-        <div class="flex items-center mt-8 mb-2 ps-2 py-4 gap-3 border-y border-gray-200 bg-white hover:bg-gray-50 hover:shadow-sm transition cursor-pointer">
+        <div class="flex items-center mt-8 mb-6 ps-2 py-4 gap-3 border-y border-gray-200 bg-white hover:bg-gray-50 shadow-sm hover:shadow-md transition cursor-pointer">
 
           <!-- アバター -->
           <div class="h-12 w-12 rounded-full overflow-hidden bg-gray-100 flex items-center justify-center">

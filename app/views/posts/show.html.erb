@@ -110,7 +110,11 @@
           </div>
         <% end %>
 
-        <%= link_to "https://twitter.com/intent/tweet?url=#{request.original_url}&text=#{ERB::Util.url_encode("#{@post.user.name}さんの旅の記録｜#{@post.title}｜Trip-let")}&hashtags=旅行,旅の記録,旅行好きな人と繋がりたい,旅好き,風景写真",
+        <%
+        tweet_text = "#{@post.user.name}さんの旅の記録｜#{@post.title}｜Trip-let"
+        tweet_url = request.original_url
+        %>
+        <%= link_to "https://twitter.com/intent/tweet?url=#{ERB::Util.url_encode(tweet_url)}&text=#{ERB::Util.url_encode(tweet_text)}&hashtags=旅行,旅の記録,旅行好きな人と繋がりたい,旅好き,風景写真",
                     target: "_blank",
                     rel: "noopener",
                     class: "inline-flex items-center gap-2 px-3 py-1.5 text-sm

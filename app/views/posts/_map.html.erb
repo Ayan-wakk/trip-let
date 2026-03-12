@@ -1,0 +1,25 @@
+<div id="map" style="height:600px; margin-top:20px;"></div>
+
+<script>
+window.initMap = function() {
+
+  const location = {
+    lat: <%= post.latitude || 35.681236 %>,
+    lng: <%= post.longitude || 139.767125 %>
+  }
+
+  const map = new google.maps.Map(
+    document.getElementById("map"),
+    {
+      zoom: 15,
+      center: location
+    }
+  )
+
+  new google.maps.Marker({
+    position: location,
+    map: map
+  })
+
+}
+</script>

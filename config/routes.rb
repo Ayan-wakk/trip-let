@@ -13,14 +13,14 @@ Rails.application.routes.draw do
     resource :like, only: %i[create destroy]
   end
 
-  resources :users, only: [:show] do
+  resources :users, only: [ :show ] do
     member do
       get :likes
     end
   end
 
   namespace :users do
-    resource :profile, only: [:edit, :update]
+    resource :profile, only: [ :edit, :update ]
   end
 
   get "up" => "rails/health#show", as: :rails_health_check

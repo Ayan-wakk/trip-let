@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, only: [:show, :new, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [ :show, :new, :edit, :update, :destroy ]
   before_action :authenticate_user!, only: :index, if: -> { params[:scope] == "my" }
   before_action :set_post, only: [ :show ]
   before_action :set_my_post, only: [ :edit, :update, :destroy ]
@@ -77,8 +77,9 @@ class PostsController < ApplicationController
   def post_params
     params.require(:post).permit(
       :title, :body, :country, :region,
-      :visited_at, :warning, :is_public, 
+      :visited_at, :warning, :is_public,
       :duration, :url, :prefecture,
+      :latitude, :longitude,
       images: [])
   end
 end

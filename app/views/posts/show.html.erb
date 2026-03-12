@@ -84,6 +84,13 @@
             <% end %>
           <% end %>
         </div>
+
+        <div class="m-6">
+          <% if @post.latitude.present? && @post.longitude.present? %>
+            <%= render "posts/map", post: @post %>
+          <% end %>
+        </div>
+
       </div>
     <% end %>
 

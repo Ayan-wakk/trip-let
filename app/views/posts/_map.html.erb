@@ -16,10 +16,38 @@ window.initMap = function() {
     }
   )
 
-  new google.maps.Marker({
-    position: location,
-    map: map
-  })
+  let marker = null
+
+  <% if post.latitude.present? && post.longitude.present? %>
+    marker = new google.maps.Marker({
+      position: location,
+      map: map
+    })
+  <% end %>
+
+  <% if local_assigns[:editable] %>
+  map.addListener("click", function(event) {
+
+    const lat = event.latLng.lat()
+    const lng = event.latLng.lng()
+
+    const latInput = document.getElementById("post_latitude")
+    const lngInput = document.getElementById("post_longitude")
+
+    if (latInput) latInput.value = lat
+    if (lngInput) lngInput.value = lng
+
+    if (marker === null) {
+      marker = new google.maps.Marker({
+        position: event.latLng,
+        map: map
+      })
+    } else {
+      marker.setPosition(event.latLng)
+    }
+
+})
+<% end %>
 
 }
 </script>

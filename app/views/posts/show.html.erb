@@ -85,7 +85,8 @@
           <% end %>
         </div>
 
-        <div class="m-6">
+        <!-- 地図 -->
+        <div class="mt-8 hidden sm:block">
           <% if @post.latitude.present? && @post.longitude.present? %>
             <%= render "posts/map", post: @post %>
           <% end %>
@@ -273,6 +274,13 @@
           </div>
         </div>
       <% end %>
+
+      <!-- 地図 スマホのみ -->
+      <div class="mt-8 hidden sm:hidden">
+        <% if @post.latitude.present? && @post.longitude.present? %>
+          <%= render "posts/map", post: @post %>
+        <% end %>
+      </div>
 
       <!-- 編集・削除ボタン(投稿者のみ) -->
       <% if user_signed_in? && current_user == @post.user %>

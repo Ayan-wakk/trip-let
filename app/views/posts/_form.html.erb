@@ -106,7 +106,7 @@
     <%= f.hidden_field :latitude, id: "post_latitude" %>
     <%= f.hidden_field :longitude, id: "post_longitude" %>
     
-    <div id="map" style="height:400px; margin-top:20px;"></div>
+    <%= render "posts/map", post: post, editable: true %>
 
     <div class="max-w-2xl mx-auto font-mono text-lg font-medium text-gray-800 px-4 py-4">
       <div class="max-w-2xl mx-auto">
@@ -119,46 +119,3 @@
     </div>
   </div>
 <% end %>
-
-<script>
-function initMap() {
-
-  const tokyo = { lat: 35.681236, lng: 139.767125 }
-
-  const map = new google.maps.Map(
-    document.getElementById("map"),
-    {
-      zoom: 13,
-      center: tokyo
-    }
-  )
-
-  let marker = null
-
-  map.addListener("click", function(event) {
-
-    const position = event.latLng
-
-    const lat = position.lat()
-    const lng = position.lng()
-
-    document.getElementById("post_latitude").value = lat
-    document.getElementById("post_longitude").value = lng
-
-    if (marker === null) {
-      marker = new google.maps.Marker({
-        position: position,
-        map: map
-      })
-    } else {
-      marker.setPosition(position)
-    }
-
-  })
-
-}
-</script>
-
-<script async defer
-src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap">
-</script>

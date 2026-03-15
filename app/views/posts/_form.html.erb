@@ -105,8 +105,10 @@
     <!-- 地図表示 -->
     <%= f.hidden_field :latitude, id: "post_latitude" %>
     <%= f.hidden_field :longitude, id: "post_longitude" %>
-    
-    <%= render "posts/map", post: post, editable: true %>
+
+    <div class="mt-8 hidden sm:block" style="height:600px;">
+      <%= render "posts/map", post: post, editable: true %>
+    </div>
 
     <div class="max-w-2xl mx-auto font-mono text-lg font-medium text-gray-800 px-4 py-4">
       <div class="max-w-2xl mx-auto">

@@ -1,28 +1,81 @@
-<div id="map" style="height:600px; margin-top:20px;"></div>
+<div id="map" style="height:100%;"></div>
 
 <script>
 window.initMap = function() {
 
+// 一覧用マップのための初期中心
+  const defaultCenter = { lat: 35.681236, lng: 139.767125 }
+
+  const map = new google.maps.Map(
+    document.getElementById("map"),
+    {
+      zoom: 9,                 // 一覧表示用のズーム
+      center: defaultCenter
+    }
+  )
+
+  // postsが渡されたとき（投稿一覧マップ）
+  <% if local_assigns[:posts] %>
+
+    const posts = <%= raw posts.to_json %>;
+
+    // 全投稿をループしてピン作成
+    posts.forEach(post => {
+
+      const marker = new google.maps.Marker({
+        position: { lat: post.latitude, lng: post.longitude },
+        map: map,
+        icon: {
+         url: post.image_url,
+         scaledSize: new google.maps.Size(40, 40)
+        }
+      })
+
+      const infoWindow = new google.maps.InfoWindow({
+        content: `
+          <div>
+            <strong>${post.title}</strong><br>
+            <a href="/posts/${post.id}">投稿を見る</a>
+          </div>
+        `
+      })
+
+      marker.addListener("click", () => {
+        infoWindow.open(map, marker)
+      })
+
+    })
+
+  <% else %>
   const location = {
     lat: <%= post.latitude || 35.681236 %>,
     lng: <%= post.longitude || 139.767125 %>
   }
 
-  const map = new google.maps.Map(
-    document.getElementById("map"),
-    {
-      zoom: 15,
-      center: location
-    }
-  )
+  map.setCenter(location)
+  map.setZoom(15)
 
   let marker = null
+
+  const infoWindow = new google.maps.InfoWindow({
+    content: `
+      <div>
+        <strong><%= post.title %></strong><br>
+        <a href="/posts/<%= post.id %>">投稿を見る</a>
+      </div>
+    `
+   })
 
   <% if post.latitude.present? && post.longitude.present? %>
     marker = new google.maps.Marker({
       position: location,
       map: map
     })
+
+    marker.addListener("click", function() {
+      infoWindow.open(map, marker)
+    })
+
   <% end %>
 
   <% if local_assigns[:editable] %>
@@ -46,8 +99,8 @@ window.initMap = function() {
       marker.setPosition(event.latLng)
     }
 
-})
+});
 <% end %>
-
+<% end %>
 }
 </script>

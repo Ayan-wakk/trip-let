@@ -32,3 +32,11 @@
     font-family: "Zen Maru Gothic", ui-sans-serif, system-ui, sans-serif;
   }
 }
+
+.map-container {
+  height: 600px;
+}
+
+.map-page #map {
+  height: 80vh;
+}

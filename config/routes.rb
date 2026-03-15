@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   }
 
   root "pages#top"
+  get "map", to: "posts#map" 
   get "/terms", to: "pages#terms"
   get "/privacy", to: "pages#privacy"
   get "/operator", to: "pages#operator"

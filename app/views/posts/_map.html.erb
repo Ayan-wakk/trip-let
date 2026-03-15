@@ -4,12 +4,12 @@
 window.initMap = function() {
 
 // 一覧用マップのための初期中心
-  const defaultCenter = { lat: 35.681236, lng: 139.767125 }
+  const defaultCenter = { lat: 38, lng: 138 }
 
   const map = new google.maps.Map(
     document.getElementById("map"),
     {
-      zoom: 9,                 // 一覧表示用のズーム
+      zoom: 6,                 // 一覧表示用のズーム
       center: defaultCenter
     }
   )

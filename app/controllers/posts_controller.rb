@@ -64,6 +64,14 @@ class PostsController < ApplicationController
     redirect_to posts_path, notice: "投稿を削除しました"
   end
 
+  def map
+    @posts = Post.where.not(latitude: nil, longitude: nil).map do |post|
+      post.as_json.merge(
+        image_url: post.images.attached? ? url_for(post.images.first) : nil
+      )
+    end
+  end
+
   private
 
   def set_post

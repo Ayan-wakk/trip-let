@@ -86,7 +86,7 @@
         </div>
 
         <!-- 地図 -->
-        <div class="mt-8 hidden sm:block">
+        <div class="mt-8 hidden sm:block" style="height:600px;">
           <% if @post.latitude.present? && @post.longitude.present? %>
             <%= render "posts/map", post: @post %>
           <% end %>

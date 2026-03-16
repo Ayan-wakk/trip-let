@@ -277,7 +277,7 @@
 
       <!-- 地図 スマホのみ -->
       <% if @post.latitude.present? && @post.longitude.present? %>
-        <div class="mt-8 hidden sm:hidden" style="height:600px;">
+        <div class="mt-8 sm:hidden" style="height:600px;">
           <%= render "posts/map", post: @post %>
         </div>
       <% end %>
